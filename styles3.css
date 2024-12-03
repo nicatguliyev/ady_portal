@@ -468,7 +468,23 @@ input {
     stroke-width: 0.5px;
     margin: 0 10px;
   }
-  
+
+  .login-box h2{
+    font-size: 24px ;
+  }
+
+  .hand-icon {
+      width: 30px;
+      height: 30px;
+      vertical-align: middle;
+  }
+
+  #p-info {
+      color: var(--Grey-700, #8A8A8A);
+      font-size: 14px;
+      line-height: 20px;
+      
+  }
 }
 
 
