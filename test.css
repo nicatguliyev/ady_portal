@@ -7,8 +7,9 @@ body {
   font-family: 'Inter', sans-serif;
   /* Apply Inter font to the whole page */
   display: flex;
-  height: 100vh;
-  overflow: hidden;
+  flex-direction: column;
+  /* min-height: 100vh; */
+  overflow-y: auto;
 }
 
 .container {
@@ -380,15 +381,26 @@ input {
 /* General Styles */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
-
+/* 
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  /* Apply Inter font to the whole page */
   display: flex;
   height: 100vh;
   overflow: hidden;
-}
+} */
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure it takes at least the full height of the viewport */
+    overflow-y: auto; /* Allow scrolling */
+  }
+  
+
+
 
 .container {
   display: flex;
@@ -475,12 +487,12 @@ body {
 }
 
 .back-link {
-  font-size: 16px;
+  font-size: 14px;
   color: #183D6E;
   text-decoration: none;
   display: flex;
   align-items: center;
-  font-weight: 600;
+  font-weight: 550;
   line-height: 24px;
   font-style: normal;
 }
@@ -808,13 +820,15 @@ input {
 
   .left-section {
     display: flex;
-    flex: 20%;
-    flex-direction: column;
-    align-items: center;
+    flex: none; /* Prevents it from shrinking or growing */
+    height: 120px; /* Fixed height */
+    width: 100%; /* Full width */
+    align-items: end;
     justify-content: center;
+    background: url('ady-login.jpg') no-repeat center center/cover; /* Background */
+    border-top-right-radius: 36px; /* Top-right rounded corner */
+    border-bottom-right-radius: 36px; /* Bottom-right rounded corner */
     background: none;
-    width: 100%;
-    padding: 20px 0;
   }
 
   .left-section .logo {
@@ -852,17 +866,10 @@ input {
   }
 
   .right-section {
-    flex: 80%;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    flex: 1; /* Allow right section to take the remaining space */
     width: 100%;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    padding-right: 20px;
-    padding-top: 0px;
-    box-shadow: none;
+    padding: 20px;
     box-sizing: border-box;
-    justify-content: start;
   }
 
   .login-box {
