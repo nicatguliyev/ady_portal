@@ -93,9 +93,6 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 40px;
-  /* box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px; */
 }
 
 .back-link {
@@ -104,30 +101,23 @@ body {
   text-decoration: none;
   display: flex;
   align-items: center;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 24px;
   font-style: normal;
 }
 
 .back-link i {
   margin-right: 8px;
-  /* Add space between the icon and text */
   font-size: 16px;
-  /* Adjust the icon size */
   transform: scaleX(0.5);
-  /* Make the chevron thinner */
   display: inline-block;
 }
 
 .icon {
   width: 16px;
-  /* Set the width of your icon */
   height: auto;
-  /* Maintain the aspect ratio */
   margin-right: 8px;
-  /* Space between the icon and text */
   vertical-align: middle;
-  /* Align icon with text */
 }
 
 
@@ -136,17 +126,12 @@ body {
 }
 
 .login-box h2 {
-  /* margin: 0 0 10px;
-    font-size: 24px;
-    color: #003566; */
-
   color: var(--Primary-500, #183D6E);
   font-family: Inter;
   font-size: 34px;
   font-style: normal;
   font-weight: 600;
   line-height: 48px;
-  /* 141.176% */
   margin-bottom: 8px;
 }
 
@@ -171,13 +156,11 @@ form {
 label {
   color: var(--Grey-700, #585858);
 
-  /* Subtitle 2 Medium 14 */
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
-  /* 142.857% */
 }
 
 input {
@@ -474,8 +457,8 @@ input {
   }
 
   .hand-icon {
-      width: 30px;
-      height: 30px;
+      width: 24px;
+      height: 24px;
       vertical-align: middle;
   }
 
