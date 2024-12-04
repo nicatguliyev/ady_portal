@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Page</title>
+  <link rel="stylesheet" href="register.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Left Section -->
+    <div class="left-section">
+        <div class="logo">
+            <img src="ady-logo.png" alt="ADY Logo" class="logo-image">
+            <div class="vertical-line"></div>
+            <div class="text">
+              <span>Elektron</span>
+              <span>xidmətlər portalı</span>
+            </div>
+        </div>
+      </div>
+
+    <!-- Right Section -->
+    <div class="right-section">
+      <a href="#" class="back-link">
+        <img src="arrow-left.png" alt="Back" class="icon">
+        Ana səhifəyə qayıt
+      </a>
+      <div class="register-box">
+        <h2>
+          <img src="register-icon.png" alt="Register Icon" class="register-icon">
+          Qeydiyyat!
+        </h2>
+        <form>
+          <div class="input-container">
+            <label for="first-name">Ad</label>
+            <input type="text" id="first-name" class="input-email">
+          </div>
+          <div class="input-container">
+            <label for="last-name">Soyad</label>
+            <input type="text" id="last-name" class="input-email" >
+          </div>
+          <div class="input-container">
+            <label for="email">Email ünvanı</label>
+            <input type="email" id="email" class="input-email" >
+          </div>
+          <div class="input-container-pass">
+            <label for="password">Şifrə</label>
+            <div class="input-wrapper">
+              <input type="password" id="password" class="input-email" >
+              <span class="toggle-password" onclick="togglePasswordVisibility('password')">
+                <img src="eye_splash_icon.png" alt="Toggle Visibility">
+              </span>
+            </div>
+          </div>
+          <div class="input-container-pass">
+            <label for="confirm-password">Şifrəni təsdiq et</label>
+            <div class="input-wrapper">
+              <input type="password" id="confirm-password" class="input-email" >
+              <span class="toggle-password" onclick="togglePasswordVisibility('confirm-password')">
+                <img src="eye_splash_icon.png" alt="Toggle Visibility">
+              </span>
+            </div>
+          </div>
+          <button type="submit" class="register-button">Qeydiyyatdan keç</button>
+        </form>
+        <p class="already-have-account">Hesabım var</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function togglePasswordVisibility(fieldId) {
+      const passwordInput = document.getElementById(fieldId);
+      const toggleIcon = passwordInput.nextElementSibling.querySelector('img');
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.src = "eye_splash_icon.png"; // Replace with the path to your "eye-slash" icon
+      } else {
+        passwordInput.type = "password";
+        toggleIcon.src = "Eye.png"; // Replace with the path to your "eye" icon
+      }
+    }
+  </script>
+</body>
+</html>

@@ -5,10 +5,9 @@
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  /* Apply Inter font to the whole page */
   display: flex;
   flex-direction: column;
-  /* min-height: 100vh; */
+  height: 100vh;
   overflow-y: auto;
 }
 
@@ -24,9 +23,7 @@ body {
   background: url('ady-login.jpg') no-repeat center center/cover;
   position: relative;
   border-top-right-radius: 36px;
-  /* Top-right corner */
   border-bottom-right-radius: 36px;
-  /* Bottom-right corner */
   overflow: hidden;/
 }
 
@@ -36,7 +33,6 @@ body {
   left: 20px;
   display: flex;
   align-items: center;
-  /* Vertically align text and logo */
   color: white;
 }
 
@@ -46,12 +42,6 @@ body {
   margin-right: 10px;
   /* Space between text and logo */
 }
-
-/* .left-section .logo h1 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
-  } */
 
 
 .left-section .vertical-line {
