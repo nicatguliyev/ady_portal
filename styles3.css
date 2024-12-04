@@ -388,7 +388,7 @@ input {
     flex: 20%;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     background: none;
     width: 100%;
     padding: 20px 0;
@@ -439,6 +439,7 @@ input {
     padding-top: 0px;
     box-shadow: none;
     box-sizing: border-box;
+    justify-content: start;
   }
 
   .login-box {
