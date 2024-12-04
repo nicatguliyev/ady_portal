@@ -92,7 +92,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px;
   /* box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px; */
@@ -398,6 +397,7 @@ input {
   .container {
     flex-direction: column;
     align-items: center;
+    overflow-y: auto;
   }
 
   .left-section {
