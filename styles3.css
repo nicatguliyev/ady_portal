@@ -92,9 +92,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px; */
+  padding: 40px;
 }
 
 .back-link {
@@ -110,23 +108,16 @@ body {
 
 .back-link i {
   margin-right: 8px;
-  /* Add space between the icon and text */
   font-size: 16px;
-  /* Adjust the icon size */
   transform: scaleX(0.5);
-  /* Make the chevron thinner */
   display: inline-block;
 }
 
 .icon {
   width: 16px;
-  /* Set the width of your icon */
   height: auto;
-  /* Maintain the aspect ratio */
   margin-right: 8px;
-  /* Space between the icon and text */
   vertical-align: middle;
-  /* Align icon with text */
 }
 
 
@@ -135,17 +126,12 @@ body {
 }
 
 .login-box h2 {
-  /* margin: 0 0 10px;
-    font-size: 24px;
-    color: #003566; */
-
   color: var(--Primary-500, #183D6E);
   font-family: Inter;
   font-size: 34px;
   font-style: normal;
   font-weight: 600;
   line-height: 48px;
-  /* 141.176% */
   margin-bottom: 8px;
 }
 
@@ -170,13 +156,11 @@ form {
 label {
   color: var(--Grey-700, #585858);
 
-  /* Subtitle 2 Medium 14 */
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 20px;
-  /* 142.857% */
 }
 
 input {
@@ -395,12 +379,10 @@ input {
 @media (max-width: 768px) {
 
   .container {
-    height: 100vh; /* Full height of the viewport */
-    overflow-y: auto; /* Allow vertical scrolling */
-    padding-bottom: 100px; /* Add space for the keyboard */
-    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .left-section {
     display: flex;
     flex: 20%;
@@ -452,7 +434,9 @@ input {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     width: 100%;
-    padding: 20px;
+    padding-left: 20px;
+    padding-bottom: 40px;
+    padding-right: 40px;
     box-shadow: none;
     box-sizing: border-box;
   }
@@ -475,8 +459,8 @@ input {
   }
 
   .hand-icon {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       vertical-align: middle;
   }
 
