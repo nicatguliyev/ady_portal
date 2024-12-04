@@ -403,7 +403,7 @@ input {
   
   .left-section {
     display: flex;
-    flex: 20%;
+    flex: 10%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -448,7 +448,7 @@ input {
   }
 
   .right-section {
-    flex: 80%;
+    flex: 90%;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     width: 100%;

@@ -381,7 +381,6 @@ input {
   .container {
     flex-direction: column;
     align-items: center;
-    overflow-y: auto;
   }
 
   .left-section {
@@ -392,6 +391,7 @@ input {
     justify-content: center;
     background: none;
     width: 100%;
+    /* height: auto; */
     padding: 20px 0;
   }
 
@@ -435,8 +435,8 @@ input {
     border-bottom-left-radius: 0;
     width: 100%;
     padding-left: 20px;
-    padding-bottom: 20px;
-    padding-right: 20px;
+    padding-bottom: 40px;
+    padding-right: 40px;
     box-shadow: none;
     box-sizing: border-box;
   }
