@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Page</title>
-  <link rel="stylesheet" href="styles3.css">
+  <link rel="stylesheet" href="test.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
 </head>
@@ -49,18 +49,36 @@
             <div class="input-wrapper">
               <input type="password" id="password" class="input-email">
               <span class="toggle-password" onclick="togglePasswordVisibility()">
-                <img src="Eye.png" alt="Toggle Visibility">
+                <img src="eye_splash_icon.png" alt="Toggle Visibility">
               </span> 
             </div> 
           </div>
 
           <p id="forgot-password-p"><a href="#">Şifrənizi unutmusunuz?</a></p>
 
+          
+
           <button type="submit" class="login-button">Daxil ol</button>
         </form>
         <p class="register-link"> Hesabınız yoxdur? <a href="#">Qeydiyyat</a>  </p>
+
+        <p class="register-link"> və ya  </p>
+
+
+        <button class="custom-button">
+            <span>digital login</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none" class="dot">
+              <path d="M4.66398 9.60619C7.20791 9.60619 9.27018 7.54392 9.27018 
+              4.99999C9.27018 2.45606 7.20791 0.393799 4.66398 0.393799C2.12005 
+              0.393799 0.057785 2.45606 0.057785 4.99999C0.057785 7.54392 
+              2.12005 9.60619 4.66398 9.60619Z" fill="white"/>
+            </svg>
+          </button>
       </div>
+     
     </div>
+
+    
   </div>  
 
 
@@ -71,10 +89,10 @@
 
       if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        toggleIcon.src = "eye-slash-icon.png"; // Replace with the path to your "eye-slash" icon
+        toggleIcon.src = "Eye.png"; // Replace with the path to your "eye-slash" icon
       } else {
         passwordInput.type = "password";
-        toggleIcon.src = "eye-icon.png"; // Replace with the path to your "eye" icon
+        toggleIcon.src = "eye_splash_icon.png"; // Replace with the path to your "eye" icon
       }
     }
   </script>
