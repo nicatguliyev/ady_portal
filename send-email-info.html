@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="register-success.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="container">
+    <!-- Left Side Image Section -->
+    <div class="left-section">
+      <div class="logo">
+          <img src="ady-logo.png" alt="ADY Logo" class="logo-image">
+          <div class="vertical-line"></div>
+          <div class="text">
+            <span>Elektron</span>
+            <span>xidmətlər portalı</span>
+          </div>
+      </div>
+    </div>
+
+    <!-- Right Side Login Form -->
+    <div class="right-section">
+        <div class="congratulations-box">
+          <img src="green-light.png" alt="Congratulations Icon" class="congratulations-icon">
+          <h2 class="congratulations-title">elchinshariflİ@hotmail.com</h2>
+          <p class="congratulations-message">
+            Şifrənin bərpası üçün keçid linki sizin e-mail
+ünvanınıza göndərildi.
+          </p>
+          <a href="new-password.html" class="back-to-home-button">Ana səhifəyə qayıt</a>
+        </div>
+      </div>
+
+    
+  </div>  
+
+
+  <script>
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById("password");
+      const toggleIcon = document.querySelector(".toggle-password img");
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.src = "Eye.png"; // Replace with the path to your "eye-slash" icon
+      } else {
+        passwordInput.type = "password";
+        toggleIcon.src = "eye_splash_icon.png"; // Replace with the path to your "eye" icon
+      }
+    }
+  </script>
+</body>
+</html>
+
