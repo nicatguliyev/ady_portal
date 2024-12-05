@@ -3,81 +3,82 @@
 
 
 body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow-y: auto;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .container {
-  display: flex;
-  width: 100%;
-  height: 100%;
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
 
 /* Left Section */
 .left-section {
-  flex: 1;
-  background: url('ady-login.jpg') no-repeat center center/cover;
-  position: relative;
-  border-top-right-radius: 36px;
-  border-bottom-right-radius: 36px;
-  overflow: hidden;/
+    flex: 1;
+    background: url('ady-login.jpg') no-repeat center center/cover;
+    position: relative;
+    border-top-right-radius: 36px;
+    border-bottom-right-radius: 36px;
+    overflow: hidden;/
 }
 
 .left-section .logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  color: white;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    color: white;
 }
 
 .left-section .text {
-  display: flex;
-  flex-direction: column;
-  margin-right: 10px;
-  /* Space between text and logo */
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    /* Space between text and logo */
 }
 
 
 .left-section .vertical-line {
-  width: 1px;
-  /* Line thickness */
-  height: 50px;
-  /* Line height */
-  background-color: white;
-  /* Line color */
-  margin: 0 10px;
-  /* Add spacing between text and logo */
+    width: 1px;
+    /* Line thickness */
+    height: 50px;
+    /* Line height */
+    background-color: white;
+    /* Line color */
+    margin: 0 10px;
+    /* Add spacing between text and logo */
 }
 
 
 .logo-image {
-  width: 72px;
-  /* Logo width */
-  height: 68px;
-  /* Logo height */
-  object-fit: contain;
-  /* Ensure logo scales properly */
+    width: 72px;
+    /* Logo width */
+    height: 68px;
+    /* Logo height */
+    object-fit: contain;
+    /* Ensure logo scales properly */
 }
 
 .left-section .logo p {
-  margin: 0;
-  font-size: 14px;
+    margin: 0;
+    font-size: 14px;
 }
 
 .left-section .text span {
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
 }
 
 .right-section {
-    flex: 1; /* Allow it to occupy the remaining space */
+    flex: 0.4;
+    /* Allow it to occupy the remaining space */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,44 +86,42 @@ body {
     padding: 40px;
     background-color: #fff;
     text-align: center;
-  }
-  
-  .congratulations-box {
+}
+
+.congratulations-box {
     max-width: 400px;
     width: 100%;
-  }
-  
-  .congratulations-icon {
+}
+
+.congratulations-icon {
     width: 120px;
     height: auto;
     margin: 0 auto 20px;
-  }
-  
-  .congratulations-title {
+}
+
+.congratulations-title {
     color: var(--Primary-500, #183D6E);
     text-align: center;
-    
-    /* H5 Semibold 24 */
+
     font-family: Inter;
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
-    line-height: 32px; /* 133.333% */
-  }
-  
-  .congratulations-message {
-    color: var(--Grey-700, #585858);
-text-align: center;
+    line-height: 32px;
+}
 
-/* Subtitle 16 Regular */
-font-family: Inter;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px; /* 150% */
-  }
-  
-  .back-to-home-button {
+.congratulations-message {
+    color: var(--Grey-700, #585858);
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 150% */
+}
+
+.back-to-home-button {
     display: inline-block;
     padding: 12px 24px;
     font-size: 15px;
@@ -132,105 +131,104 @@ line-height: 24px; /* 150% */
     border-radius: 8px;
     text-decoration: none;
     transition: background-color 0.3s;
-  }
-  
-  .back-to-home-button:hover {
-    background-color: #0056b3;
-  }
+}
 
-  @media (max-width: 768px) {
+.back-to-home-button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
 
     .container {
-      flex-direction: column;
-      align-items: center;
+        flex-direction: column;
+        align-items: center;
     }
-  
+
     .left-section {
-      display: flex;
-      flex: none; 
-      height: 120px; 
-      width: 100%; 
-      align-items: end;
-      justify-content: center;
-      border-top-right-radius: 36px; 
-      border-bottom-right-radius: 36px; 
-      background: none;
+        display: flex;
+        flex: none;
+        height: 120px;
+        width: 100%;
+        align-items: end;
+        justify-content: center;
+        border-top-right-radius: 36px;
+        border-bottom-right-radius: 36px;
+        background: none;
     }
-  
+
     .left-section .logo {
-      position: static;
-      text-align: center;
-  
+        position: static;
+        text-align: center;
+
     }
-  
+
     .logo-image {
-      width: 72px;
-      height: 68px;
-      content: url('ady_logo_blue.png');
-      margin-bottom: 10px;
-  
+        width: 72px;
+        height: 68px;
+        content: url('ady_logo_blue.png');
+        margin-bottom: 10px;
+
     }
-  
+
     .left-section .text {
-      margin: 0;
-      color: grey;
+        margin: 0;
+        color: grey;
     }
-  
+
     .left-section .text span {
-      color: var(--Primary-500, #183D6E);
-      font-family: Inter;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 24px;
-      display: flex;
-      width: 128px;
-      flex-direction: column;
-      justify-content: center;
-      align-self: stretch;
-      text-align: left;
+        color: var(--Primary-500, #183D6E);
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+        display: flex;
+        width: 128px;
+        flex-direction: column;
+        justify-content: center;
+        align-self: stretch;
+        text-align: left;
     }
-  
+
     .right-section {
-      flex: 1; /* Allow right section to take the remaining space */
-      width: 100%;
-      padding: 20px;
-      box-sizing: border-box;
+        flex: 1;
+        /* Allow right section to take the remaining space */
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
     }
-  
+
     .login-box {
-      width: 100%;
-      max-width: 400px;
-      margin: 0 auto;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
     }
-  
+
     .left-section .vertical-line {
-      background-color:  #183D6E;
-      stroke: var(--Primary-500, #183D6E);
-      stroke-width: 0.5px;
-      margin: 0 10px;
+        background-color: #183D6E;
+        stroke: var(--Primary-500, #183D6E);
+        stroke-width: 0.5px;
+        margin: 0 10px;
     }
-  
-    .login-box h2{
-      font-size: 24px ;
+
+    .login-box h2 {
+        font-size: 24px;
     }
-  
+
     .hand-icon {
         width: 24px;
         height: 24px;
         vertical-align: middle;
     }
-  
+
     #p-info {
         color: var(--Grey-700, #8A8A8A);
         font-size: 14px;
         line-height: 20px;
-        
+
     }
-  
-    
-  
-  
-  }
-  
-  
+
+
+
+
+}

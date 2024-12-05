@@ -7,25 +7,27 @@ body {
   font-family: 'Inter', sans-serif;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh; /* Ensure body fills the full height of the viewport */
   overflow-y: auto;
 }
 
+
 .container {
-  display: flex;
-  width: 100%;
-  height: 100%;
+display: flex;
+width: 100%;
+min-height: 100vh; /* Ensure container takes full height */
 }
 
 /* Left Section */
 .left-section {
-  flex: 1;
+  flex: 1; /* Left section occupies 50% of container */
   background: url('ady-login.jpg') no-repeat center center/cover;
   position: relative;
   border-top-right-radius: 36px;
   border-bottom-right-radius: 36px;
-  overflow: hidden;/
+  min-height: 100vh; /* Ensure left section fills the height */
 }
+
 
 .left-section .logo {
   position: absolute;
@@ -78,12 +80,14 @@ body {
 
 /* Right Section */
 .right-section {
-  flex: 0.4;
+  flex: 0.4; /* Right section occupies remaining space */
   background: #fff;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px;
+  min-height: 100vh; /* Ensure right section fills the height */
+  box-sizing: border-box; /* Include padding in width and height calculations */
 }
 
 .back-link {
@@ -367,436 +371,44 @@ input {
   /* Align the image with the text */
 }
 
-
-/* General Styles */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
-/* 
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
-} */
-
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ensure it takes at least the full height of the viewport */
-    overflow-y: auto; /* Allow scrolling */
-  }
-  
-
-
-
-.container {
-  display: flex;
+.custom-button {
   width: 100%;
-  height: 100%;
-}
-
-/* Left Section */
-.left-section {
-  flex: 1;
-  background: url('ady-login.jpg') no-repeat center center/cover;
-  position: relative;
-  border-top-right-radius: 36px;
-  /* Top-right corner */
-  border-bottom-right-radius: 36px;
-  /* Bottom-right corner */
-  overflow: hidden;/
-}
-
-.left-section .logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
   align-items: center;
-  /* Vertically align text and logo */
-  color: white;
-}
-
-.left-section .text {
-  display: flex;
-  flex-direction: column;
-  margin-right: 10px;
-  /* Space between text and logo */
-}
-
-/* .left-section .logo h1 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
-  } */
-
-
-.left-section .vertical-line {
-  width: 1px;
-  /* Line thickness */
-  height: 50px;
-  /* Line height */
-  background-color: white;
-  /* Line color */
-  margin: 0 10px;
-  /* Add spacing between text and logo */
-}
-
-
-.logo-image {
-  width: 72px;
-  /* Logo width */
-  height: 68px;
-  /* Logo height */
-  object-fit: contain;
-  /* Ensure logo scales properly */
-}
-
-.left-section .logo p {
-  margin: 0;
-  font-size: 14px;
-}
-
-.left-section .text span {
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 600;
-}
-
-/* Right Section */
-.right-section {
-  flex: 0.4;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  padding: 40px;
-}
-
-.back-link {
-  font-size: 14px;
-  color: #183D6E;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  font-weight: 550;
-  line-height: 24px;
-  font-style: normal;
-}
-
-.back-link i {
-  margin-right: 8px;
-  font-size: 16px;
-  transform: scaleX(0.5);
-  display: inline-block;
-}
-
-.icon {
-  width: 16px;
-  height: auto;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-
-
-.login-box {
-  text-align: left;
-}
-
-.login-box h2 {
-  color: var(--Primary-500, #183D6E);
-  font-family: Inter;
-  font-size: 34px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 48px;
-  margin-bottom: 8px;
-}
-
-#p-info {
-
-  color: var(--Grey-700, #585858);
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
-  /* 150% */
-  margin-top: 0px;
-  max-width: 370px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  color: var(--Grey-700, #585858);
-
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 20px;
-}
-
-input {
-  height: 40px;
-  padding: 8px 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ced4da;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-.password-field {
-  position: relative;
-}
-
-.password-field .toggle-password {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-#forgot-password-p {
-  color: var(--Primary-500, #183D6E);
-  text-align: right;
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 20px;
-  /* 142.857% */
-  margin-bottom: 36px;
-  margin-top: 0px;
-}
-
-
-#forgot-password-p a {
-  text-decoration: none;
-}
-
-#forgot-password-p a:hover {
-  text-decoration: underline;
-}
-
-.login-button {
+  gap: 8px; 
+  background-color: #0045C7; 
+  color: white; 
   height: 52px;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  font-family: Inter;
-  font-style: normal;
-  cursor: pointer;
-  border-radius: 8px;
-  background: var(--Primary-500, #183D6E);
-}
-
-.login-button:hover {
-  background: #0056b3;
-}
-
-.register-link {
-  color: var(--Grey-700, #585858);
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  text-align: center;
-  font-weight: 500;
-  margin-top: 28px;
-  line-height: 20px;
-  /* 142.857% */
-  font-family: Inter;
-  font-style: normal;
-}
-
-.register-link a {
-  color: var(--Primary-500, #183D6E);
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 20px;
-  text-decoration: none;
-}
-
-.register-link a:hover {
-  text-decoration: underline;
-}
-
-.input-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  /* max-width: 500px; */
-}
-
-.input-container-pass {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  /* max-width: 500px; */
-}
-
-
-/* Label Styling */
-.input-container label {
-  color: var(--Grey-700, #585858);
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 20px;
-  /* 142.857% */
-  padding-bottom: 6px;
-}
-
-.pass-label {
-  color: var(--Grey-700, #585858);
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 20px;
-  /* 142.857% */
-  padding-bottom: 6px;
-}
-
-/* Input Field Styling */
-.input-email {
-  height: 40px;
-  /* Adjust height to match image */
-  padding: 8px 12px;
-  /* Add padding for spacing */
-  border: none;
-  border-radius: 8px;
-  /* Rounded corners */
-  background-color: #F1F2F6;
-  /* Light gray background */
   font-size: 16px;
-  /* Match text size */
-  color: #333333;
-  /* Text color */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow */
-  outline: none;
-  /* Remove focus outline */
-}
-
-
-
-.input-container-pass input:focus {
-  border: 1px solid #a9a9a9;
-  /* Slight border when focused */
-}
-
-.input-container input:focus {
-  border: 1px solid #a9a9a9;
-  /* Slight border when focused */
-}
-
-.input-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-.input-wrapper input {
-  width: 100%;
-  height: 56px;
-  /* Adjust height to match image */
-  padding: 8px 12px;
-  /* Add padding for spacing */
+  font-family: 'Inter', sans-serif; 
+  font-weight: 600; 
+  text-transform: lowercase; 
+  padding: 10px 20px;
   border: none;
-  border-radius: 8px;
-  /* Rounded corners */
-  background-color: #F1F2F6;
-  /* Light gray background */
-  font-size: 16px;
-  /* Match text size */
-  color: #333333;
-  /* Text color */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow */
-  outline: none;
-  /* Remove focus outline */
-  box-sizing: border-box;
-  /* Include padding and border in the width calculation */
-
-}
-
-.toggle-password {
-  position: absolute;
-  top: 40%;
-  right: 15px;
-  transform: translateY(-50%);
+  border-radius: 12px; 
   cursor: pointer;
-
+  outline: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.toggle-password img {
-  width: 25px;
-  /* Adjust the size of the eye icon */
-  height: 25px;
+/* Hover and active states for the button */
+.custom-button:hover {
+  background-color: #0036cc; /* Darker blue on hover */
 }
 
-.hand-icon {
-  width: 36px;
-  /* Adjust the size of the hand icon */
-  height: 36px;
-  /* Keep it square */
-  vertical-align: middle;
-  /* Align the image with the text */
-
+.custom-button:active {
+  transform: scale(0.95); /* Slight shrink on click */
 }
-  /* Button styles */
-  .custom-button {
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    gap: 8px; 
-    background-color: #0045C7; 
-    color: white; 
-    height: 52px;
-    font-size: 16px;
-    font-family: 'Inter', sans-serif; 
-    font-weight: 600; 
-    text-transform: lowercase; 
-    padding: 10px 20px;
-    border: none;
-    border-radius: 12px; 
-    cursor: pointer;
-    outline: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  /* Hover and active states for the button */
-  .custom-button:hover {
-    background-color: #0036cc; /* Darker blue on hover */
-  }
-  
-  .custom-button:active {
-    transform: scale(0.95); /* Slight shrink on click */
-  }
-  
-  /* SVG styles */
-  .custom-button svg {
-    height: 20px;
-  }
-  
-  .custom-button .dot {
-    width: 10px;
-    height: 10px;
-  }
-  
+
+/* SVG styles */
+.custom-button svg {
+  height: 20px;
+}
+
+.custom-button .dot {
+  width: 10px;
+  height: 10px;
+}
 
 
 

@@ -6,26 +6,28 @@ body {
     font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh; /* Ensure body fills the full height of the viewport */
     overflow-y: auto;
   }
-  
-  .container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-  }
-  
+
+
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh; /* Ensure container takes full height */
+}
+
   /* Left Section */
   .left-section {
-    flex: 1;
+    flex: 1; /* Left section occupies 50% of container */
     background: url('ady-login.jpg') no-repeat center center/cover;
     position: relative;
     border-top-right-radius: 36px;
     border-bottom-right-radius: 36px;
-    overflow: hidden;/
+    min-height: 100vh; /* Ensure left section fills the height */
   }
-  
+
+
   .left-section .logo {
     position: absolute;
     top: 20px;
@@ -70,11 +72,14 @@ body {
 
 /* Right Section */
 .right-section {
-  flex: 0.4;
+  flex: 0.4; /* Right section occupies remaining space */
   background: #fff;
   padding: 40px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 100vh; /* Ensure right section fills the height */
+  box-sizing: border-box; /* Include padding in width and height calculations */
 }
 
 .back-link {
