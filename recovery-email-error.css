@@ -35,6 +35,27 @@ body {
     overflow-y: auto;
     box-sizing: border-box; /* Include padding in height/width calculations */
   }
+
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    visibility: hidden; /* Hidden by default */
+    height: 12px; /* Reserve space for the error message */
+  }
+
+  .error-message.visible {
+    visibility: visible; /* Show error message when validation fails */
+  }
+
+  .input-field.error {
+    background-color: #ffcccc; /* Red background for invalid inputs */
+    border: 1px solid red; /* Optional: Red border */
+  }
+
+  .input-container {
+    margin-bottom: 20px; /* Consistent spacing between input fields */
+  }
   
   
   .left-section .logo {
@@ -251,7 +272,7 @@ form {
   
   .toggle-password {
     position: absolute;
-    top: 36%;
+    top: 40%;
     right: 15px;
     transform: translateY(-50%);
     cursor: pointer;

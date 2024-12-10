@@ -32,18 +32,24 @@
           <img src="register-icon.png" alt="Register Icon" class="register-icon">
           Qeydiyyat!
         </h2>
-        <form   onsubmit="redirectToCongratulationsPage(event)">
+        <form   id="registrationForm" novalidate>
           <div class="input-container">
             <label for="first-name">Ad</label>
             <input type="text" id="first-name" class="input-email">
+            <span id="firstNameError" class="error-message">Bu bölmə doldurulmalıdır.</span>
+
           </div>
           <div class="input-container">
             <label for="last-name">Soyad</label>
             <input type="text" id="last-name" class="input-email" >
+            <span id="lastNameError" class="error-message">Bu bölmə doldurulmalıdır.</span>
+
           </div>
           <div class="input-container">
             <label for="email">Email ünvanı</label>
             <input type="email" id="email" class="input-email" >
+            <span id="emailError" class="error-message">Emaili düzgün daxil edin</span>
+
           </div>
           <div class="input-container-pass">
             <label for="password">Şifrə</label>
@@ -53,6 +59,8 @@
                 <img src="eye_splash_icon.png" alt="Toggle Visibility">
               </span>
             </div>
+            <span id="passwordError" class="error-message">Şifrənizdə ən azı bir böyük hərf və 10 simvol olmalıdır</span>
+
           </div>
           <div class="input-container-pass">
             <label for="confirm-password">Şifrəni təsdiq et</label>
@@ -62,6 +70,8 @@
                 <img src="eye_splash_icon.png" alt="Toggle Visibility">
               </span>
             </div>
+            <span id="confirmPasswordError" class="error-message">Şifrələr uyğun deyil</span>
+
           </div>
           <button type="submit" class="register-button">Qeydiyyatdan keç</button>
         </form>
@@ -76,17 +86,137 @@
       const toggleIcon = passwordInput.nextElementSibling.querySelector('img');
       if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        toggleIcon.src = "eye_splash_icon.png"; // Replace with the path to your "eye-slash" icon
+        toggleIcon.src = "Eye.png"; 
       } else {
         passwordInput.type = "password";
-        toggleIcon.src = "Eye.png"; // Replace with the path to your "eye" icon
+        toggleIcon.src = "eye_splash_icon.png"; 
       }
     }
 
-    function redirectToCongratulationsPage(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
-    window.location.href = "register-success.html"; // Redirect to the "congratulations" page
-  }
+  //   function redirectToCongratulationsPage(event) {
+  //   event.preventDefault();
+  //   window.location.href = "register-success.html";
+  // }
+
+
+  document.getElementById("registrationForm").addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent default form submission
+
+      const emailInput = document.getElementById("email");
+      const emailError = document.getElementById("emailError");
+      const passwordInput = document.getElementById("password");
+      const passwordError = document.getElementById("passwordError");
+      const confirmPasswordInput = document.getElementById("confirm-password");
+      const confirmPasswordError = document.getElementById("confirmPasswordError");
+
+
+      const firstName = document.getElementById("first-name");
+      const firstNameError = document.getElementById("firstNameError");
+
+      const lastName = document.getElementById("last-name");
+      const lastNameError = document.getElementById("lastNameError");
+
+
+      let isValid = true;
+
+      // Reset previous error states
+      emailInput.classList.remove("error-input");
+      emailError.style.display = "none";
+      passwordInput.classList.remove("error-input");
+      passwordError.style.display = "none";
+      confirmPasswordInput.classList.remove("error-input");
+      confirmPasswordError.style.display = "none";
+
+      firstName.classList.remove("error-input");
+      firstNameError.style.display = "none";
+
+      lastName.classList.remove("error-input");
+      lastNameError.style.display = "none";
+
+
+      if (!firstName.value.trim()) {
+        firstName.classList.add("error-input");
+        firstNameError.style.display = "block";
+        isValid = false;
+      }
+
+      // Validate last name
+      if (!lastName.value.trim()) {
+        lastName.classList.add("error-input");
+        lastNameError.style.display = "block";
+        isValid = false;
+      }
+
+      // Validate email
+      if (!emailInput.value) {
+        emailInput.classList.add("error-input");
+        emailError.textContent = "Bu bölmə doldurulmalıdır";
+        emailError.style.display = "block";
+        isValid = false;
+      } else {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value)) {
+          emailInput.classList.add("error-input");
+          emailError.textContent = "Emaili düzgün daxil edin.";
+          emailError.style.display = "block";
+          isValid = false;
+        }
+      }
+
+      // Validate password (min 10 characters and at least 1 uppercase letter)
+      if (!passwordInput.value || passwordInput.value.length < 10 || !/[A-Z]/.test(passwordInput.value)) {
+        passwordInput.classList.add("error-input");
+        passwordError.textContent = "Şifrənizdə ən azı bir böyük hərf və 10 simvol olmalıdır";
+        passwordError.style.display = "block";
+        isValid = false;
+      }
+
+      // Validate confirm password (must match password)
+      if (confirmPasswordInput.value !== passwordInput.value) {
+        confirmPasswordInput.classList.add("error-input");
+        confirmPasswordError.textContent = "Şifrələr uyğun deyil";
+        confirmPasswordError.style.display = "block";
+        isValid = false;
+      }
+
+      // If everything is valid, proceed with form submission or redirection
+      if (isValid) {
+        window.location.href = "register-success.html";
+      }
+    });
+
+    document.getElementById("first-name").addEventListener("input", function () {
+      const firstNameError = document.getElementById("firstNameError");
+      this.classList.remove("error-input");
+      firstNameError.style.display = "none";
+    });
+
+    document.getElementById("last-name").addEventListener("input", function () {
+      const lastNameError = document.getElementById("lastNameError");
+      this.classList.remove("error-input");
+      lastNameError.style.display = "none";
+    });
+
+
+
+    // Clear error message when the user types
+    document.getElementById("email").addEventListener("input", function () {
+      const emailError = document.getElementById("emailError");
+      this.classList.remove("error-input");
+      emailError.style.display = "none";
+    });
+
+    document.getElementById("password").addEventListener("input", function () {
+      const passwordError = document.getElementById("passwordError");
+      this.classList.remove("error-input");
+      passwordError.style.display = "none";
+    });
+
+    document.getElementById("confirm-password").addEventListener("input", function () {
+      const confirmPasswordError = document.getElementById("confirmPasswordError");
+      this.classList.remove("error-input");
+      confirmPasswordError.style.display = "none";
+    });
   </script>
 </body>
 </html>

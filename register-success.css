@@ -77,7 +77,7 @@ body {
 }
 
 .right-section {
-    flex: 1; /* Allow it to occupy the remaining space */
+    flex: 0.4; /* Allow it to occupy the remaining space */
     display: flex;
     flex-direction: column;
     justify-content: center;
