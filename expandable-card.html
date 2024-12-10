@@ -1,93 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expandable Card</title>
+    <title>Expandable Card with Animation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        .card {
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        body {
+            font-family: 'Inter', sans-serif;
         }
+
+        .card {
+            border-radius: 20px;
+            border-color: rgb(231, 231, 231);
+            /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+        }
+
         .card-header {
             background-color: #f8f9fa;
             border-bottom: none;
+            margin-top: 10px;
+            margin-bottom: 10px;;
         }
+
+        .horizontal-line {
+            border: 0;
+            height: 2px;
+            background-color: #a4c9ff;
+            margin: 0;
+            margin-left: 16px !important;
+            margin-right: 16px !important;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
         .circle {
             width: 30px;
             height: 30px;
-            border-radius: 50%;
-            background-color: #dcdcdc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 14px;
-            font-weight: bold;
-            color: white;
+            margin: 10px 0;
         }
-        .active .circle {
-            background-color: #007bff;
+
+        .grey-circle {
+            width: 25px;
+            height: 25px;
+            margin: 10px 0;
         }
+
         .progress-bar-container {
-            width: 100%;
+            flex-grow: 1;
             height: 4px;
             background-color: #dcdcdc;
             position: relative;
+            margin: 0 15px;
         }
+
         .progress-bar-active {
             height: 4px;
-            background-color: #007bff;
-            width: 50%;
+            background-color: #183D6E;
+            width: 100%;
+        }
+
+        .date {
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            color: #183D6E;
+        }
+
+        .details-toggle-btn {
+            display: block;
+            margin: 20px auto;
+            font-size: 14px;
+            font-weight: 500;
+            color: #183D6E;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .details-toggle-btn:focus {
+            outline: none;
+        }
+
+        .card-body {
+            padding: 0px;
+        }
+
+        small {
+            max-width: 120px;
+        }
+
+        .btn-with-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 12px;
+            background-color: #E4ECF8;
+            color: #183D6E;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .icon-button {
+            width: 40px;
+            height: 40px;
+            background-color: #E4F8EB;
+            color: #007b55;
+            border: none;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-button i {
+            font-size: 18px;
+        }
+
+        #request-number {
+            overflow: hidden;
+            color: #131313;
+            text-overflow: ellipsis;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px;
+        }
+
+        #request-name {
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+            color: #424242;
+        }
+
+        .completed-step-name {
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px;
+            color: #183D6E;
+        }
+
+        .uncompleted-step-name {
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px;
+            color: #585858;
+        }
+
+        .step-explanation {
+            color: #8A8A8A;
+            text-align: center;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+
+        #details {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        #details.show {
+            max-height: 500px; /* Adjust based on content height */
         }
     </style>
 </head>
+
 <body>
     <div class="container my-4">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <div>
-                    <h6 class="mb-0">№ 1154431456</h6>
-                    <p class="text-muted mb-0">Vaqonların təmiri ilə əlaqədar</p>
+                <div class="d-flex align-items-center">
+                    <img class="tool-img" width="48px" height="48px" src="vaadin_tools.png" alt="">
+                    <div style="margin-left: 8px;">
+                        <h6 class="mb-0" id="request-number">№ 1154431456</h6>
+                        <p class="text-muted mb-0" id="request-name">Vaqonların təmiri ilə əlaqədar</p>
+                    </div>
                 </div>
-                <button class="btn btn-outline-primary btn-sm">Müraciətə bax</button>
+                <div class="d-flex gap-2">
+                    <button class="btn-with-icon">
+                        <img style="margin-right: 8px;" width="18px" src="Eye.png" alt=""> Müraciətə bax
+                    </button>
+                    <button class="icon-button">
+                        <img width="40px" src="download-icon.png" alt="">
+                    </button>
+                </div>
             </div>
+            <!-- Horizontal Line -->
+            <hr class="horizontal-line">
             <div class="card-body">
-                <p class="mb-0">08.08.08</p>
                 <!-- Step Indicator -->
-                <div class="d-flex align-items-center justify-content-between mt-3">
-                    <!-- Step 1 -->
-                    <div class="text-center">
-                        <div class="circle active">1</div>
-                        <small>Qəbul edildi</small>
-                    </div>
-                    <!-- Progress Bar -->
-                    <div class="progress-bar-container mx-2">
-                        <div class="progress-bar-active"></div>
-                    </div>
-                    <!-- Step 2 -->
-                    <div class="text-center">
-                        <div class="circle">2</div>
-                        <small>Baxılır</small>
-                    </div>
-                    <!-- Progress Bar -->
-                    <div class="progress-bar-container mx-2"></div>
-                    <!-- Step 3 -->
-                    <div class="text-center">
-                        <div class="circle">3</div>
-                        <small>İcra edildi</small>
+                <div id="details">
+                    <div class="step-indicator">
+                        <!-- Step 1 -->
+                        <div class="step">
+                            <div style="height: 42px;"></div>
+                            <span class="date">08.08.08</span>
+                            <img class="circle" src="done-circle.png" alt="">
+                            <small class="completed-step-name">Qəbul edildi</small>
+                            <small class="step-explanation">Müraciətiniz uğurla göndərilib</small>
+                        </div>
+                        <!-- Progress Bar -->
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-active"></div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="step">
+                            <div style="height: 42px;"></div>
+                            <div style="height: 21px;"></div>
+                            <img class="grey-circle" src="grey-circle.png" alt="">
+                            <small class="uncompleted-step-name">Baxılır</small>
+                            <small class="step-explanation">Müraciətinizə baxılır</small>
+                        </div>
+                        <!-- Progress Bar -->
+                        <div class="progress-bar-container"></div>
+                        <!-- Step 3 -->
+                        <div class="step">
+                            <div style="height: 42px;"></div>
+                            <div style="height: 21px;"></div>
+                            <img class="grey-circle" src="grey-circle.png" alt="">
+                            <small class="uncompleted-step-name">İcra edildi</small>
+                            <small class="step-explanation">Müraciətiniz uğurla icar edildi</small>
+                        </div>
                     </div>
                 </div>
-                <button class="btn btn-link mt-3" data-bs-toggle="collapse" data-bs-target="#details" aria-expanded="false" aria-controls="details">
-                    Ətraflı bax
+                <button class="details-toggle-btn" id="toggleButton">
+                    Ətraflı bax <img src="arrow-down.png" width="16px" height="16px" alt="">
                 </button>
-                <div class="collapse" id="details">
-                    <p class="mt-3">Additional information about the request can be placed here.</p>
-                </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const toggleButton = document.getElementById('toggleButton');
+        const details = document.getElementById('details');
+
+        toggleButton.addEventListener('click', () => {
+            if (details.classList.contains('show')) {
+                details.classList.remove('show');
+                toggleButton.innerHTML = 'Ətraflı bax <img src="arrow-down.png" width="16px" height="16px" alt="">';
+            } else {
+                details.classList.add('show');
+                toggleButton.innerHTML = 'Ətraflı bax <img src="arrow-up.png" width="16px" height="16px" alt="">';
+            }
+        });
+    </script>
 </body>
+
 </html>
