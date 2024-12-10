@@ -45,7 +45,7 @@ body {
     padding: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: center;/* Align content to the top */
+    justify-content: start;/* Align content to the top */
     overflow-y: auto; /* Enable vertical scrolling for the right section */
     box-sizing: border-box; /* Include padding in height/width calculations */
   }
