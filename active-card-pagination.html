@@ -401,6 +401,7 @@
       function toggleDetails(button) {
         const details = button.parentNode.querySelector('#details');
         if (details.classList.contains('show')) {
+            details.classList.remove('show');
           button.innerHTML =
             'Ətraflı bax <img src="arrow-down.png" width="16px" height="16px" alt="">';
         } else {
