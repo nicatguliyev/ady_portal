@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination with Expandable Cards</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .card {
+            border-radius: 20px;
+            border-color: rgb(231, 231, 231);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #183D6E;
+            color: white;
+            cursor: pointer;
+        }
+
+        .pagination button.active {
+            background-color: #0056b3;
+        }
+
+        .pagination button:hover {
+            background-color: #004494;
+        }
+
+        .details-toggle-btn {
+            display: block;
+            margin: 20px auto;
+            font-size: 14px;
+            font-weight: 500;
+            color: #183D6E;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .details-toggle-btn:focus {
+            outline: none;
+        }
+
+        #details {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        #details.show {
+            max-height: 500px;
+        }
+
+        .horizontal-line {
+            border: 0;
+            height: 2px;
+            background-color: #a4c9ff;
+            margin: 0;
+            margin-left: 16px !important;
+            margin-right: 16px !important;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .circle {
+            width: 30px;
+            height: 30px;
+            margin: 10px 0;
+        }
+
+        .grey-circle {
+            width: 25px;
+            height: 25px;
+            margin: 10px 0;
+        }
+
+        .progress-bar-container {
+            flex-grow: 1;
+            height: 4px;
+            background-color: #dcdcdc;
+            position: relative;
+            margin: 0 15px;
+        }
+
+        .progress-bar-active {
+            height: 4px;
+            background-color: #183D6E;
+            width: 100%;
+        }
+
+        .date {
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            color: #183D6E;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .card {
+            border-radius: 20px;
+            border-color: rgb(231, 231, 231);
+            /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+        }
+
+        .card-header {
+            background-color: #ffffff;
+            border-bottom: none;
+            margin-top: 10px;
+            margin-bottom: 10px;;
+        }
+
+        .horizontal-line {
+            border: 0;
+            height: 2px;
+            background-color: #a4c9ff;
+            margin: 0;
+            margin-left: 16px !important;
+            margin-right: 16px !important;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .circle {
+            width: 30px;
+            height: 30px;
+            margin: 10px 0;
+        }
+
+        .grey-circle {
+            width: 25px;
+            height: 25px;
+            margin: 10px 0;
+        }
+
+        .progress-bar-container {
+            flex-grow: 1;
+            height: 4px;
+            background-color: #dcdcdc;
+            position: relative;
+            margin: 0 15px;
+        }
+
+        .progress-bar-active {
+            height: 4px;
+            background-color: #183D6E;
+            width: 100%;
+        }
+
+        .date {
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            color: #183D6E;
+        }
+
+        .details-toggle-btn {
+            display: block;
+            margin: 20px auto;
+            font-size: 14px;
+            font-weight: 500;
+            color: #183D6E;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .details-toggle-btn:focus {
+            outline: none;
+        }
+
+        .card-body {
+            padding: 0px;
+        }
+
+        small {
+            max-width: 120px;
+        }
+
+        .btn-with-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 12px;
+            background-color: #E4ECF8;
+            color: #183D6E;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .icon-button {
+            width: 40px;
+            height: 40px;
+            background-color: #E4F8EB;
+            color: #007b55;
+            border: none;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-button i {
+            font-size: 18px;
+        }
+
+        #request-number {
+            overflow: hidden;
+            color: #131313;
+            text-overflow: ellipsis;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px;
+        }
+
+        #request-name {
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+            color: #424242;
+        }
+
+        .completed-step-name {
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px;
+            color: #183D6E;
+        }
+
+        .uncompleted-step-name {
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px;
+            color: #585858;
+        }
+
+        .step-explanation {
+            color: #8A8A8A;
+            text-align: center;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+
+        #details {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        #details.show {
+            max-height: 500px; /* Adjust based on content height */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-4">
+        <div id="card-container"></div>
+
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <script>
+        const totalCards = 15;
+        const cardsPerPage = 5;
+        const totalPages = Math.ceil(totalCards / cardsPerPage);
+
+        const cardHTML = `
+            <div class="card mb-3">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <img class="tool-img" width="48px" height="48px" src="vaadin_tools.png" alt="">
+                        <div style="margin-left: 8px;">
+                            <h6 class="mb-0" id="request-number">№ 1154431456</h6>
+                            <p class="text-muted mb-0" id="request-name">Vaqonların təmiri ilə əlaqədar</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn-with-icon">
+                            <img style="margin-right: 8px;" width="18px" src="Eye.png" alt=""> Müraciətə bax
+                        </button>
+                        <button class="icon-button">
+                            <img width="40px" src="download-icon.png" alt="">
+                        </button>
+                    </div>
+                </div>
+                <hr class="horizontal-line">
+                <div class="card-body">
+                    <div id="details">
+                        <div class="step-indicator">
+                            <!-- Step 1 -->
+                            <div class="step">
+                                <div style="height: 42px;"></div>
+                                <span class="date">08.08.08</span>
+                                <img class="circle" src="done-circle.png" alt="">
+                                <small class="completed-step-name">Qəbul edildi</small>
+                                <small class="step-explanation">Müraciətiniz uğurla göndərilib</small>
+                            </div>
+                            <!-- Progress Bar -->
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-active"></div>
+                            </div>
+                            <!-- Step 2 -->
+                            <div class="step">
+                                <div style="height: 42px;"></div>
+                                <div style="height: 21px;"></div>
+                                <img class="grey-circle" src="grey-circle.png" alt="">
+                                <small class="uncompleted-step-name">Baxılır</small>
+                                <small class="step-explanation">Müraciətinizə baxılır</small>
+                            </div>
+                            <!-- Progress Bar -->
+                            <div class="progress-bar-container">
+                                <div class="grey-progress-bar-active"></div>
+                            </div>
+                            <!-- Step 3 -->
+                            <div class="step">
+                                <div style="height: 42px;"></div>
+                                <div style="height: 21px;"></div>
+                                <img class="grey-circle" src="grey-circle.png" alt="">
+                                <small class="uncompleted-step-name">İcra edildi</small>
+                                <small class="step-explanation">Müraciətiniz uğurla icar edildi</small>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="details-toggle-btn" onclick="toggleDetails(this)">
+                        Ətraflı bax <img src="arrow-down.png" width="16px" height="16px" alt="">
+                    </button>
+                </div>
+            </div>`;
+
+        const cardContainer = document.getElementById('card-container');
+        const paginationContainer = document.getElementById('pagination');
+
+        function toggleDetails(button) {
+            const details = button.parentNode.querySelector('#details');
+            if (details.classList.contains('show')) {
+                details.classList.remove('show');
+                button.innerHTML = 'Ətraflı bax <img src="arrow-down.png" width="16px" height="16px" alt="">';
+            } else {
+                details.classList.add('show');
+                button.innerHTML = 'Ətraflı bax <img src="arrow-up.png" width="16px" height="16px" alt="">';
+            }
+        }
+
+        function renderPage(page) {
+            // Clear existing cards
+            cardContainer.innerHTML = '';
+
+            // Calculate start and end index for cards
+            const start = (page - 1) * cardsPerPage;
+            const end = Math.min(start + cardsPerPage, totalCards);
+
+            // Add cards for the current page
+            for (let i = start; i < end; i++) {
+                cardContainer.innerHTML += cardHTML;
+            }
+
+            // Update pagination buttons
+            Array.from(paginationContainer.children).forEach((button, index) => {
+                button.classList.toggle('active', index + 1 === page);
+            });
+        }
+
+        function setupPagination() {
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                button.addEventListener('click', () => renderPage(i));
+                paginationContainer.appendChild(button);
+            }
+        }
+
+        // Initialize
+        setupPagination();
+        renderPage(1);
+    </script>
+</body>
+
+</html>
