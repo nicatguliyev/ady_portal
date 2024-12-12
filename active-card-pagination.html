@@ -294,33 +294,440 @@
         line-height: 20px;
       }
 
-      #details {
+      .details {
         overflow: hidden;
-        max-height: 0;
-        transition: 0.5s all ease-in-out;
+        transition: all 0.5s ease-in-out;
+        height: 0;
+        opacity: 0;
       }
 
-      #details.show {
-        max-height: 500px; /* Adjust based on content height */
+      .details.show {
+        opacity: 1;
+        height: auto;
         padding-top: 20px !important;
       }
 
       .checkEye {
         display: none;
-        @media (min-width: 576px) {
+        @media (min-width: 968px) {
           display: block;
         }
       }
+
+      .requests {
+        margin: 20px auto;
+      }
+
+      .requests .title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #004a9f;
+        margin-bottom: 0;
+        display: inline-block;
+        border-bottom: 3px solid #004a9f;
+      }
+
+      .requests .tabs {
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+        display: flex;
+        gap: 10px;
+      }
+
+      .requests .tab {
+        padding: 8px 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fff;
+        color: #555;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .requests .tab.active {
+        background-color: #004a9f;
+        color: #fff;
+        border-color: #004a9f;
+      }
+
+      .wrapper {
+        display: flex;
+
+        @media (max-width: 576px) {
+          flex-direction: column;
+        }
+      }
+
+      .feedback {
+        display: none;
+        padding-top: 32px;
+      }
+
+      .feedback-content {
+        padding-inline: 16px;
+      }
+
+      .feedback h1 {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+      }
+
+      .pdf-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .pdf-link {
+        text-decoration: none;
+        color: #183d6e;
+        background-color: #e3f0ff;
+
+        border: 1px solid transparent;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+
+      .pdf-link:hover {
+        background-color: #007bff;
+        color: #fff;
+      }
+
+      .text-area {
+        color: #007bff;
+        padding: 5px 10px;
+        color: #666;
+        line-height: 1.6;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        background-color: #e3f0ff;
+      }
+
+      .main-content {
+        flex: 1;
+      }
+
+      .user-profile {
+        display: grid;
+        margin-block: 30px 20px;
+        width: 100%;
+        grid-auto-rows: max-content;
+        align-items: center;
+        column-gap: 10px;
+        row-gap: 20px;
+        grid-template-areas:
+          'image logout'
+          'info request';
+        @media (min-width: 576px) {
+          padding-right: 50px;
+          width: 250px;
+          grid-template-areas:
+            'image'
+            'info'
+            'request'
+            'logout';
+        }
+      }
+      .user-profile-name {
+        display: flex;
+        gap: 4px;
+        width: max-content;
+        align-items: center;
+        grid-area: image;
+      }
+
+      .user-profile-name img {
+        display: block;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+      }
+
+      .user-profile-name p {
+        margin: 0;
+        color: #8a8a8a;
+        font-size: 12px;
+      }
+      .user-profile-name h5 {
+        color: #183d6e;
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .user-info {
+        grid-area: info;
+        margin-top: 24px;
+        color: #183d6e;
+        padding: 8px 12px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        @media (max-width: 576px) {
+          margin-top: 0;
+          text-align: center;
+          border: 1px solid #e3f0ff;
+        }
+      }
+
+      .user-request {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        grid-area: request;
+        margin-top: 8px;
+        padding: 8px 12px;
+        border-radius: 10px;
+        color: #183d6e;
+        @media (max-width: 576px) {
+          margin-top: 0;
+          text-align: center;
+          background-color: #183d6e;
+          color: white;
+        }
+      }
+      .user-logout {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        grid-area: logout;
+        padding: 8px 12px;
+        border-radius: 10px;
+        margin-top: 8px;
+        color: red;
+        @media (max-width: 576px) {
+          margin-top: 0;
+          font-size: 14px;
+        }
+      }
+
+      .user-info:hover,
+      .user-request:hover,
+      .user-info.active,
+      .user-request.active {
+        background-color: #183d6e;
+        color: white;
+      }
     </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $('.user-info').on('click', () => {
+          window.location.href = '/portal/my-infos.html';
+        });
+      });
+    </script>
   </head>
-
   <body>
-    <div class="container my-4">
-      <div id="card-container"></div>
+    <div class="container my-4 wrapper">
+      <div class="user-profile">
+        <div class="user-profile-name">
+          <img
+            src="https://placehold.co/50x50"
+            alt="placeholder" />
+          <div>
+            <p>Xoş gəldiniz,</p>
+            <h5>Elçin Şərifliflifl</h5>
+          </div>
+        </div>
+        <div class="user-info">
+          <img
+            src="./profile fill.svg"
+            alt="" />
+          <span>Məlumatlarım </span>
+        </div>
+        <div class="user-request active">
+          <img
+            src="./profile fill.svg"
+            alt="" /><span>Müraciətlərim</span>
+        </div>
+        <div class="user-logout">
+          <img
+            src="./exit remove bold.svg"
+            alt="" />
+          <span> Hesabdan çıx </span>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="requests">
+          <h1 class="title">Müraciətlərim</h1>
+          <div class="tabs">
+            <button class="tab active">Aktiv</button>
+            <button class="tab">Bitmiş</button>
+            <button class="tab">İmtina olunmuş</button>
+          </div>
+        </div>
+        <div id="card-container">
+          <div class="card mb-3">
+            <div
+              class="card-header d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center">
+                <img
+                  class="tool-img"
+                  width="48px"
+                  height="48px"
+                  src="vaadin_tools.png"
+                  alt="" />
+                <div style="margin-left: 8px">
+                  <h6
+                    class="mb-0"
+                    id="request-number">
+                    № 1154431456
+                  </h6>
+                  <p
+                    class="text-muted mb-0"
+                    id="request-name">
+                    Vaqonların təmiri ilə əlaqədar
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn-with-icon">
+                  <img
+                    style="margin-right: 8px"
+                    width="18px"
+                    src="Eye.png"
+                    alt="" /><span class="checkEye">Müraciətə bax</span>
+                </button>
+                <button class="icon-button">
+                  <img
+                    width="40px"
+                    src="download-icon.png"
+                    alt="" />
+                </button>
+              </div>
+            </div>
+            <hr class="horizontal-line" />
+            <div class="card-body">
+              <div class="details">
+                <div class="step-indicator">
+                  <!-- Step 1 -->
+                  <div class="step">
+                    <span class="date">08.08.08</span>
+                    <img
+                      class="circle"
+                      src="done-circle.png"
+                      alt="" />
+                    <div class="step-description">
+                      <small class="completed-step-name">Qəbul edildi</small>
+                      <small class="step-explanation"
+                        >Müraciətiniz uğurla göndərilib</small
+                      >
+                    </div>
+                  </div>
+                  <!-- Progress Bar -->
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-active"></div>
+                  </div>
+                  <!-- Step 2 -->
+                  <div class="step">
+                    <span class="date opacity-0">08.08.08</span>
+                    <img
+                      class="grey-circle"
+                      src="grey-circle.png"
+                      alt="" />
+                    <div class="step-description">
+                      <small class="uncompleted-step-name">Baxılır</small>
+                      <small class="step-explanation"
+                        >Müraciətinizə baxılır</small
+                      >
+                    </div>
+                  </div>
+                  <!-- Progress Bar -->
+                  <div class="progress-bar-container">
+                    <div class="grey-progress-bar-active"></div>
+                  </div>
+                  <!-- Step 3 -->
+                  <div class="step">
+                    <span class="date opacity-0">08.08.08</span>
+                    <img
+                      class="grey-circle"
+                      src="grey-circle.png"
+                      alt="" />
+                    <div class="step-description">
+                      <small class="uncompleted-step-name">İcra edildi</small>
+                      <small class="step-explanation"
+                        >Müraciətiniz uğurla icar edildi</small
+                      >
+                    </div>
+                  </div>
+                </div>
 
-      <div
-        class="pagination"
-        id="pagination"></div>
+                <div class="feedback">
+                  <hr class="horizontal-line mb-4" />
+                  <div class="feedback-content">
+                    <h1>Cavab Məktubu</h1>
+                    <div class="pdf-links">
+                      <a
+                        href="#"
+                        class="pdf-link"
+                        >Cavab məktubu.pdf</a
+                      >
+                      <a
+                        href="#"
+                        class="pdf-link"
+                        >Cavab məktubu.pdf</a
+                      >
+                      <a
+                        href="#"
+                        class="pdf-link"
+                        >Cavab məktubu.pdf</a
+                      >
+                      <a
+                        href="#"
+                        class="pdf-link"
+                        >Cavab məktubu.pdf</a
+                      >
+                      <a
+                        href="#"
+                        class="pdf-link"
+                        >Cavab məktubu.pdf</a
+                      >
+                    </div>
+                    <p class="text-area">
+                      Bütün məlumatlar rus dilində yazılmalıdır. Bütün
+                      məlumatlar rus dilində yazılmalıdır. Bütün məlumatlar rus
+                      dilində yazılmalıdır. Bütün məlumatlar rus dilində
+                      yazılmalıdır. Bütün məlumatlar rus dilində yazılmalıdır.
+                      Bütün məlumatlar rus dilində yazılmalıdır. Bütün
+                      məlumatlar rus dilində yazılmalıdır. Bütün məlumatlar rus
+                      dilində yazılmalıdır. Bütün məlumatlar rus dilində
+                      yazılmalıdır. Bütün məlumatlar rus dilində yazılmalıdır.
+                      Bütün məlumatlar rus dilində yazılmalıdır. Bütün
+                      məlumatlar rus dilində yazılmalıdır. Bütün məlumatlar rus
+                      dilində yazılmalıdır. Bütün məlumatlar rus dilində
+                      yazılmalıdır. Bütün məlumatlar rus dilində yazılmalıdır.
+                      Bütün məlumatlar rus dilində yazılmalıdır. Bütün
+                      məlumatlar rus dilində yazılmalıdır. Bütün məlumatlar rus
+                      dilində yazılmalıdır. Bütün məlumatlar rus dilində
+                      yazılmalıdır.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="details-toggle-btn"
+                onclick="toggleDetails(this)">
+                Ətraflı bax
+                <img
+                  src="arrow-down.png"
+                  width="16px"
+                  height="16px"
+                  alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pagination"
+          id="pagination"></div>
+      </div>
     </div>
 
     <script>
@@ -328,80 +735,13 @@
       const cardsPerPage = 5;
       const totalPages = Math.ceil(totalCards / cardsPerPage);
 
-      const cardHTML = `
-            <div class="card mb-3">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                        <img class="tool-img" width="48px" height="48px" src="vaadin_tools.png" alt="">
-                        <div style="margin-left: 8px;">
-                            <h6 class="mb-0" id="request-number">№ 1154431456</h6>
-                            <p class="text-muted mb-0" id="request-name">Vaqonların təmiri ilə əlaqədar</p>
-                        </div>
-                    </div>
-                    <div class="d-flex gap-2">
-                        <button class="btn-with-icon">
-                            <img style="margin-right: 8px;" width="18px" src="Eye.png" alt=""/><span class="checkEye">Müraciətə bax</span>
-                        </button>
-                        <button class="icon-button">
-                            <img width="40px" src="download-icon.png" alt="">
-                        </button>
-                    </div>
-                </div>
-                <hr class="horizontal-line">
-                <div class="card-body">
-                    <div id="details">
-                        <div class="step-indicator">
-                            <!-- Step 1 -->
-                            <div class="step">
-                                <span class="date">08.08.08</span>
-                                <img class="circle" src="done-circle.png" alt="">
-                                <div class="step-description">
-                                    <small class="completed-step-name">Qəbul edildi</small>
-                                    <small class="step-explanation">Müraciətiniz uğurla göndərilib</small>
-                                </div>
-                            </div>
-                            <!-- Progress Bar -->
-                            <div class="progress-bar-container">
-                                <div class="progress-bar-active"></div>
-                            </div>
-                            <!-- Step 2 -->
-                            <div class="step">
-                                <span class="date opacity-0">08.08.08</span>
-                                <img class="grey-circle" src="grey-circle.png" alt="">
-                                <div class="step-description">
-                                    <small class="uncompleted-step-name">Baxılır</small>
-                                    <small class="step-explanation">Müraciətinizə baxılır</small>
-                                </div>
-                            </div>
-                            <!-- Progress Bar -->
-                            <div class="progress-bar-container">
-                                <div class="grey-progress-bar-active"></div>
-                            </div>
-                            <!-- Step 3 -->
-                            <div class="step">
-                                <span class="date opacity-0">08.08.08</span>
-                                <img class="grey-circle" src="grey-circle.png" alt="">
-                                 <div class="step-description">
-                                    <small class="uncompleted-step-name">İcra edildi</small>
-                                    <small class="step-explanation">Müraciətiniz uğurla icar edildi</small>
-                                </div>
-                             
-                            </div>
-                        </div>
-                    </div>
-                    <button class="details-toggle-btn" onclick="toggleDetails(this)">
-                        Ətraflı bax <img src="arrow-down.png" width="16px" height="16px" alt="">
-                    </button>
-                </div>
-            </div>`;
-
       const cardContainer = document.getElementById('card-container');
       const paginationContainer = document.getElementById('pagination');
 
       function toggleDetails(button) {
-        const details = button.parentNode.querySelector('#details');
+        const details = button.parentNode.querySelector('.details');
         if (details.classList.contains('show')) {
-            details.classList.remove('show');
+          details.classList.remove('show');
           button.innerHTML =
             'Ətraflı bax <img src="arrow-down.png" width="16px" height="16px" alt="">';
         } else {
@@ -413,8 +753,8 @@
 
       function renderPage(page) {
         // Clear existing cards
+        let cardHTML = cardContainer.innerHTML;
         cardContainer.innerHTML = '';
-
         // Calculate start and end index for cards
         const start = (page - 1) * cardsPerPage;
         const end = Math.min(start + cardsPerPage, totalCards);
@@ -439,9 +779,44 @@
         }
       }
 
+      function setActiveForRequestTabs() {
+        let requests = document.querySelector('.requests');
+
+        let tabs = requests.querySelectorAll('.tab');
+
+        function handleActiveTab() {
+          let details = document.querySelectorAll('.details');
+          details.forEach((detail) => detail.classList.remove('show'));
+
+          tabs.forEach((tab) => {
+            if (tab.classList.contains('active')) {
+              tab.classList.remove('active');
+            }
+          });
+          this.classList.add('active');
+
+          if (this.innerHTML === 'Bitmiş') {
+            let feedbacks = document.querySelectorAll('.feedback');
+            feedbacks.forEach((feedback) => {
+              feedback.style.display = 'block';
+            });
+          } else {
+            let feedbacks = document.querySelectorAll('.feedback');
+            feedbacks.forEach((feedback) => {
+              feedback.style.display = 'none';
+            });
+          }
+        }
+
+        tabs.forEach((tab) => {
+          tab?.addEventListener('click', handleActiveTab);
+        });
+      }
+
       // Initialize
       setupPagination();
       renderPage(1);
+      setActiveForRequestTabs();
     </script>
   </body>
 </html>
