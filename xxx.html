@@ -452,6 +452,7 @@
         border-radius: 50%;
         width: 50px;
         height: 50px;
+        object-fit: cover;
       }
 
       .user-profile-name p {
@@ -527,7 +528,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 15px;
-      background-color: #f8f9fa;
+      /* background-color: #f8f9fa; */
       /* border: 1px solid #dee2e6; */
       border-radius: 8px;
     }
@@ -1089,8 +1090,8 @@
       .user-request:hover,
       .user-info.active,
       .user-request.active {
-        background-color: #183d6e;
-        color: white;
+        background-color: #E4ECF8;
+        color: #183D6E;
       }
     </style>
 
@@ -1109,28 +1110,34 @@
       <div class="user-profile">
         <div class="user-profile-name">
           <img
-            src="https://placehold.co/50x50"
+            src="/images/avatar.png"
             alt="placeholder" />
-          <div>
+          <div style="margin-left: 10px;">
             <p>Xoş gəldiniz,</p>
             <h5>Elçin Şərifliflifl</h5>
           </div>
         </div>
         <div class="user-info">
           <img
-            src="./profile fill.svg"
-            alt="" />
+            src="user-icon.png"
+            alt="" 
+            width="20px"
+            height="20px"/>
           <span>Məlumatlarım </span>
         </div>
         <div class="user-request active">
           <img
-            src="./profile fill.svg"
-            alt="" /><span>Müraciətlərim</span>
+            src="doc-icon.png"
+            alt=""
+            width="20px"
+            height="20px" /><span>Müraciətlərim</span>
         </div>
         <div class="user-logout">
           <img
-            src="./exit remove bold.svg"
-            alt="" />
+            src="exit-icon.png"
+            alt="" 
+            width="20px"
+            height="20px"/>
           <span> Hesabdan çıx </span>
         </div>
       </div>
