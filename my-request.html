@@ -69,6 +69,21 @@
       outline: none;
     }
 
+    .logout-text{
+        font-weight: 500;
+        font-size: 14px;
+
+    }
+    .request-text{
+        font-weight: 500;
+        font-size: 14px; 
+    }
+
+    .info-text{
+        font-weight: 500;
+        font-size: 14px; 
+    }
+
     .horizontal-line {
       border: 0;
       height: 2px;
@@ -366,7 +381,9 @@
     .wrapper {
       display: flex;
       width: 1160px;
-      max-width: 95%;
+      max-width: 100%;
+      padding-left: 8px;
+      padding-right: 8px;
       @media (max-width: 576px) {
         flex-direction: column;
       }
@@ -483,18 +500,23 @@
       border-radius: 50%;
       width: 50px;
       height: 50px;
+      margin-left: 8px;
+      object-fit: cover;
+      
     }
 
     .user-profile-name p {
       margin: 0;
       color: #8a8a8a;
       font-size: 12px;
+      margin-left: 8px;
     }
 
     .user-profile-name h5 {
       color: #183d6e;
-      font-size: 16px;
+      font-size: 18px;
       margin: 0;
+      margin-left: 8px;
     }
 
 
@@ -507,6 +529,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      cursor: pointer;
 
       @media (max-width: 576px) {
         margin-top: 0;
@@ -520,15 +543,15 @@
       align-items: center;
       gap: 8px;
       grid-area: request;
-      margin-top: 8px;
       padding: 8px 12px;
       border-radius: 10px;
       color: #183d6e;
+      cursor: pointer;
 
       @media (max-width: 576px) {
         margin-top: 0;
         text-align: center;
-        background-color: #183d6e;
+        background-color: #E4ECF8;
         color: white;
       }
     }
@@ -540,8 +563,9 @@
       grid-area: logout;
       padding: 8px 12px;
       border-radius: 10px;
-      margin-top: 8px;
+      /* margin-top: 8px; */
       color: red;
+      cursor: pointer;
 
       @media (max-width: 576px) {
         margin-top: 0;
@@ -553,9 +577,16 @@
     .user-request:hover,
     .user-info.active,
     .user-request.active {
-      background-color: #183d6e;
-      color: white;
+      background-color: #E4ECF8;
+      color: #183D6E;
     }
+
+    .user-logout:hover{
+        background-color: #E4ECF8;
+        color: #183D6E;
+    }
+
+    
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -565,7 +596,15 @@
       $('.user-info').on('click', () => {
         window.location.href = '/my-infos.html';
       });
+
+      $('.user-request').on('click', () => {
+        window.location.href = '/my-request.html';
+      });
+
+
     });
+
+
   </script>
 </head>
 
@@ -979,22 +1018,25 @@
     <div class="container my-4 wrapper">
       <div class="user-profile">
         <div class="user-profile-name">
-          <img src="https://placehold.co/50x50" alt="placeholder" />
+          <img src="./images/avatar.png" alt="placeholder" />
           <div>
             <p>Xoş gəldiniz,</p>
             <h5>Eldar</h5>
           </div>
         </div>
         <div class="user-info">
-          <img src="./profile fill.svg" alt="" />
-          <span>Məlumatlarım </span>
+            <img src="user-icon.png" alt="" width="20px" height="20px" />
+                      <span class="info-text">Məlumatlarım </span>
         </div>
         <div class="user-request active">
-          <img src="./profile fill.svg" alt="" /><span>Müraciətlərim</span>
+            <img src="doc-icon.png" alt="" width="20px" height="20px" />
+
+            <span class="request-text">Müraciətlərim</span>
         </div>
         <div class="user-logout">
-          <img src="./exit remove bold.svg" alt="" />
-          <span> Hesabdan çıx </span>
+            <img src="exit-icon.png" alt="" width="20px" height="20px" />
+
+            <span class="logout-text"> Hesabdan çıx </span>
         </div>
       </div>
       <div class="main-content">
@@ -1243,6 +1285,8 @@
           'Ətraflı bax <img src="arrow-up.png" width="16px" height="16px" alt="">';
       }
     }
+
+
 
     function renderPage(page) {
       // Clear existing cards
