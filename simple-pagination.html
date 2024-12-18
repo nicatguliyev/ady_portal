@@ -535,6 +535,7 @@
         margin-top: 0;
         text-align: center;
         border: 1px solid #e3f0ff;
+        justify-content: center;
       }
     }
 
@@ -553,6 +554,7 @@
         text-align: center;
         background-color: #E4ECF8;
         color: white;
+        justify-content: center;
       }
     }
 
@@ -570,6 +572,7 @@
       @media (max-width: 576px) {
         margin-top: 0;
         font-size: 14px;
+        justify-content: center;
       }
     }
 
@@ -1331,6 +1334,20 @@ function createPagination() {
     pagination.appendChild(createPageItem(totalPages));
   }
 }
+
+function toggleDetails(button) {
+      const details = button.parentNode.querySelector('.details');
+      if (details.classList.contains('show')) {
+        details.classList.remove('show');
+        button.innerHTML =
+          'Ətraflı bax <img src="arrow-down.png" width="16px" height="16px" alt="">';
+      } else {
+        details.classList.add('show');
+        button.innerHTML =
+          'Ətraflı bax <img src="arrow-up.png" width="16px" height="16px" alt="">';
+      }
+    }
+
 
 // Initial render
 createPagination();

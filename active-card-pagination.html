@@ -132,7 +132,7 @@
     .card {
       border-radius: 20px;
       border-color: rgb(231, 231, 231);
-      /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .card-header {
@@ -535,6 +535,7 @@
         margin-top: 0;
         text-align: center;
         border: 1px solid #e3f0ff;
+        justify-content: center;
       }
     }
 
@@ -553,6 +554,7 @@
         text-align: center;
         background-color: #E4ECF8;
         color: white;
+        justify-content: center;
       }
     }
 
@@ -570,6 +572,7 @@
       @media (max-width: 576px) {
         margin-top: 0;
         font-size: 14px;
+        justify-content: center;
       }
     }
 
@@ -598,7 +601,7 @@
       });
 
       $('.user-request').on('click', () => {
-        window.location.href = '/my-request.html';
+        window.location.href = '/active-card-pagination.html';
       });
 
 
@@ -1152,7 +1155,9 @@
             </div>
           </div>
         </div>
-        <div class="pagination" id="pagination"></div>
+        <nav>
+            <ul class="pagination" id="pagination"></ul>
+          </nav>
       </div>
     </div>
 
@@ -1266,14 +1271,71 @@
   </div>
 
   <script>
-    const totalCards = 15;
-    const cardsPerPage = 5;
-    const totalPages = Math.ceil(totalCards / cardsPerPage);
+const totalPages = 11;       // Total number of pages
+const maxVisible = 3;       // Maximum number of visible buttons (configurable)
+let currentPage = 1;        // Current active page
 
-    const cardContainer = document.getElementById('card-container');
-    const paginationContainer = document.getElementById('pagination');
+function createPagination() {
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = "";
 
-    function toggleDetails(button) {
+  const createPageItem = (page) => {
+    const li = document.createElement("li");
+    li.className = `page-item ${page === currentPage ? "active" : ""}`;
+    const a = document.createElement("a");
+    a.className = "page-link";
+    a.href = "#";
+    a.textContent = page;
+    a.addEventListener("click", () => {
+      currentPage = page;
+      createPagination();
+    });
+    li.appendChild(a);
+    return li;
+  };
+
+  if (totalPages < 1) return;
+
+  // Always show the first page
+  pagination.appendChild(createPageItem(1));
+
+  // Determine the start and end pages dynamically
+  let startPage = Math.max(2, currentPage - Math.floor(maxVisible / 2));
+  let endPage = Math.min(totalPages - 1, startPage + maxVisible - 1);
+
+  // Adjust startPage if near the end
+  if (endPage >= totalPages - 1) {
+    startPage = Math.max(2, totalPages - maxVisible);
+  }
+
+  // Show left dots only if there are hidden pages between the first and startPage
+  if (startPage > 2) {
+    const leftDots = document.createElement("li");
+    leftDots.className = "page-item dots";
+    leftDots.textContent = "...";
+    pagination.appendChild(leftDots);
+  }
+
+  // Render visible pages
+  for (let i = startPage; i <= endPage; i++) {
+    pagination.appendChild(createPageItem(i));
+  }
+
+  // Show right dots only if there are hidden pages between endPage and the last page
+  if (endPage < totalPages - 1) {
+    const rightDots = document.createElement("li");
+    rightDots.className = "page-item dots";
+    rightDots.textContent = "...";
+    pagination.appendChild(rightDots);
+  }
+
+  // Always show the last page if more than one page
+  if (totalPages > 1) {
+    pagination.appendChild(createPageItem(totalPages));
+  }
+}
+
+function toggleDetails(button) {
       const details = button.parentNode.querySelector('.details');
       if (details.classList.contains('show')) {
         details.classList.remove('show');
@@ -1287,34 +1349,10 @@
     }
 
 
+// Initial render
+createPagination();
 
-    function renderPage(page) {
-      // Clear existing cards
-      let cardHTML = cardContainer.innerHTML;
-      cardContainer.innerHTML = '';
-      // Calculate start and end index for cards
-      const start = (page - 1) * cardsPerPage;
-      const end = Math.min(start + cardsPerPage, totalCards);
 
-      // Add cards for the current page
-      for (let i = start; i < end; i++) {
-        cardContainer.innerHTML += cardHTML;
-      }
-
-      // Update pagination buttons
-      Array.from(paginationContainer.children).forEach((button, index) => {
-        button.classList.toggle('active', index + 1 === page);
-      });
-    }
-
-    function setupPagination() {
-      for (let i = 1; i <= totalPages; i++) {
-        const button = document.createElement('button');
-        button.textContent = i;
-        button.addEventListener('click', () => renderPage(i));
-        paginationContainer.appendChild(button);
-      }
-    }
 
     function setActiveForRequestTabs() {
       let requests = document.querySelector('.requests');
@@ -1351,8 +1389,6 @@
     }
 
     // Initialize
-    setupPagination();
-    renderPage(1);
     setActiveForRequestTabs();
   </script>
 </body>
