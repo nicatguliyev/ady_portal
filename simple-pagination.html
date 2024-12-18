@@ -2,16 +2,14 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <link rel="apple-touch-icon" sizes="180x180" href="./src/icons/favicon/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="./src/icons/favicon/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="./src/icons/favicon/favicon-16x16.png" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-
-  <title>PortalApp</title>
+  <title>Pagination with Expandable Cards</title>
   <link rel="stylesheet" href="./css/general.css" />
   <link rel="stylesheet" href="./css/header.css" />
   <link rel="stylesheet" href="./css/footer.css" />
@@ -19,7 +17,8 @@
   <link rel="stylesheet" href="./css/select2.css" />
   <link rel="stylesheet" href="./css/online_services.css" />
   <link rel="stylesheet" href="./css/citizen_approval.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -70,6 +69,21 @@
       outline: none;
     }
 
+    .logout-text{
+        font-weight: 500;
+        font-size: 14px;
+
+    }
+    .request-text{
+        font-weight: 500;
+        font-size: 14px; 
+    }
+
+    .info-text{
+        font-weight: 500;
+        font-size: 14px; 
+    }
+
     .horizontal-line {
       border: 0;
       height: 2px;
@@ -118,7 +132,7 @@
     .card {
       border-radius: 20px;
       border-color: rgb(231, 231, 231);
-      /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .card-header {
@@ -170,7 +184,7 @@
       flex-direction: column;
     }
 
-    .circle {
+    .done-circle {
       width: 30px;
       height: 30px;
 
@@ -367,11 +381,9 @@
     .wrapper {
       display: flex;
       width: 1160px;
-      margin: 0 auto;
-      max-width: 96%;
-      padding-left: 0px;
-      padding-right: 0px;
-
+      max-width: 100%;
+      padding-left: 8px;
+      padding-right: 8px;
       @media (max-width: 576px) {
         flex-direction: column;
       }
@@ -452,578 +464,6 @@
       }
     }
 
-    .user-profile-name {
-      display: flex;
-      gap: 4px;
-      width: max-content;
-      align-items: center;
-      grid-area: image;
-      padding-left: 16px;
-    }
-
-    .user-profile-name img {
-      display: block;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-    }
-
-    .user-profile-name p {
-      margin: 0;
-      color: #8a8a8a;
-      font-size: 12px;
-    }
-
-    .user-profile-name h5 {
-      color: #183d6e;
-      font-size: 16px;
-      margin: 0;
-    }
-
-    .user-info {
-      grid-area: info;
-      margin-top: 24px;
-      color: #183d6e;
-      padding: 8px 12px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-
-      @media (max-width: 576px) {
-        margin-top: 0;
-        text-align: center;
-        border: 1px solid #e3f0ff;
-      }
-    }
-
-    .user-request {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      grid-area: request;
-      /* margin-top: 8px; */
-      padding: 8px 12px;
-      border-radius: 10px;
-      color: #183d6e;
-      cursor: pointer;
-
-      @media (max-width: 576px) {
-        margin-top: 0;
-        text-align: center;
-        background-color: #183d6e;
-        color: white;
-      }
-    }
-
-    .user-logout {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      grid-area: logout;
-      padding: 8px 12px;
-      border-radius: 10px;
-      /* margin-top: 8px; */
-      color: red;
-      cursor: pointer;
-
-      @media (max-width: 576px) {
-        margin-top: 0;
-        font-size: 14px;
-      }
-    }
-
-    .user-info:hover,
-    .user-request:hover,
-    .user-info.active,
-    .user-request.active {
-      background-color: #183d6e;
-      color: white;
-    }
-
-    .user-logout:hover{
-      background-color: #E4ECF8;
-    }
-
-
-    .profile-div {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 15px;
-      /* background-color: #f8f9fa; */
-      /* border: 1px solid #dee2e6; */
-      border-radius: 8px;
-    }
-
-    .profile-image-container {
-      position: relative;
-      display: inline-block;
-    }
-
-    .pdiv {
-      padding-left: 0px;
-      padding-right: 0px;
-    }
-
-    .profile-image-btn {
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-    }
-
-    .profile-image {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #dee2e6;
-    }
-
-    .profile-image-btn :hover {
-      background-color: green;
-    }
-
-    .edit-icon {
-      position: absolute;
-      bottom: 5px;
-      right: 5px;
-      background-color: #ffffff;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 25px;
-      height: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .edit-icon:hover {
-      background-color: #0056b3;
-    }
-
-    .change-password-btn {
-      text-decoration: none;
-      color: red;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .change-password-btn:hover {
-      color: #0056b3;
-      text-decoration: underline;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-
-    .card {
-      border-radius: 20px;
-      border-color: rgb(231, 231, 231);
-    }
-
-    .pagination {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .pagination button {
-      margin: 0 5px;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      background-color: #183d6e;
-      color: white;
-      cursor: pointer;
-    }
-
-    .pagination button.active {
-      background-color: #0056b3;
-    }
-
-    .pagination button:hover {
-      background-color: #004494;
-    }
-
-    .details-toggle-btn {
-      display: block;
-      margin: 20px auto;
-      font-size: 14px;
-      font-weight: 500;
-      color: #183d6e;
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .details-toggle-btn:focus {
-      outline: none;
-    }
-
-    .horizontal-line {
-      border: 0;
-      height: 2px;
-      background-color: #a4c9ff;
-      margin: 0;
-      margin-left: 16px !important;
-      margin-right: 16px !important;
-    }
-
-    .progress-bar-container {
-      width: 4px;
-      height: 50px;
-      margin-left: 3.5rem;
-
-      @media (min-width: 576px) {
-        width: 100%;
-        height: 4px;
-        background-color: #dcdcdc;
-        position: relative;
-        margin: -42px 15px 0;
-      }
-    }
-
-    .progress-bar-active {
-      background-color: #183d6e;
-    }
-
-    .grey-progress-bar-active {
-      background-color: #dcdcdc;
-      height: inherit;
-      width: 100%;
-    }
-
-    .date {
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 20px;
-      color: #183d6e;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-
-    .card {
-      border-radius: 20px;
-      border-color: rgb(231, 231, 231);
-      /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
-    }
-
-    .card-header {
-      background-color: #ffffff;
-      border-bottom: none;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
-
-    .horizontal-line {
-      border: 0;
-      height: 2px;
-      background-color: #a4c9ff;
-      margin: 0;
-      margin-left: 16px !important;
-      margin-right: 16px !important;
-    }
-
-    .step-indicator {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-left: 16px;
-      padding-right: 16px;
-      flex-direction: column;
-      gap: 15px;
-
-      @media (min-width: 576px) {
-        flex-direction: row;
-      }
-    }
-
-    .step {
-      display: flex;
-      align-items: center;
-      flex-direction: row-reverse;
-      width: 100%;
-      justify-content: center;
-
-      @media (min-width: 576px) {
-        padding-top: 0px;
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-
-    .step-description {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .circle {
-      width: 30px;
-      height: 30px;
-
-      margin-left: 1.1rem;
-      margin-right: 1.8rem;
-
-      @media (min-width: 576px) {
-        margin: 10px 0;
-      }
-    }
-
-    .grey-circle {
-      width: 25px;
-      height: 25px;
-      margin-left: 1.1rem;
-      margin-right: 1.8rem;
-
-      @media (min-width: 576px) {
-        margin: 10px 0;
-      }
-    }
-
-    .progress-bar-active {
-      height: inherit;
-      background-color: #183d6e;
-      width: 100%;
-    }
-
-    .date {
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 20px;
-      color: #183d6e;
-    }
-
-    .details-toggle-btn {
-      display: block;
-      margin: 20px auto;
-      font-size: 14px;
-      font-weight: 500;
-      color: #183d6e;
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .details-toggle-btn:focus {
-      outline: none;
-    }
-
-    .card-body {
-      padding: 0px;
-    }
-
-    small {
-      max-width: 120px;
-    }
-
-    .btn-with-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px 12px;
-      background-color: #e4ecf8;
-      color: #183d6e;
-      border: none;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-    }
-
-    .icon-button {
-      width: 40px;
-      height: 40px;
-      background-color: #e4f8eb;
-      color: #007b55;
-      border: none;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .icon-button i {
-      font-size: 18px;
-    }
-
-    #request-number {
-      overflow: hidden;
-      color: #131313;
-      text-overflow: ellipsis;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 24px;
-    }
-
-    #request-name {
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 20px;
-      color: #424242;
-    }
-
-    .completed-step-name {
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 24px;
-      color: #183d6e;
-      text-align: center;
-    }
-
-    .uncompleted-step-name {
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 24px;
-      color: #585858;
-      text-align: center;
-    }
-
-    .step-explanation {
-      color: #8a8a8a;
-      text-align: center;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 20px;
-    }
-
-    .details {
-      overflow: hidden;
-      transition: all 0.5s ease-in-out;
-      height: 0;
-      opacity: 0;
-    }
-
-    .details.show {
-      opacity: 1;
-      height: auto;
-      padding-top: 20px !important;
-    }
-
-    .checkEye {
-      display: none;
-
-      @media (min-width: 968px) {
-        display: block;
-      }
-    }
-
-    .requests {
-      margin: 20px auto;
-    }
-
-    .requests .title {
-      font-size: 20px;
-      font-weight: bold;
-      color: #004a9f;
-      margin-bottom: 0;
-      display: inline-block;
-      border-bottom: 3px solid #004a9f;
-    }
-
-    .requests .tabs {
-      padding-top: 20px;
-      border-top: 1px solid #ddd;
-      display: flex;
-      gap: 10px;
-    }
-
-    .requests .tab {
-      padding: 8px 16px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      background-color: #fff;
-      color: #555;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .requests .tab.active {
-      background-color: #004a9f;
-      color: #fff;
-      border-color: #004a9f;
-    }
-
-    .wrapper {
-      display: flex;
-
-      @media (max-width: 576px) {
-        flex-direction: column;
-      }
-    }
-
-    .feedback {
-      display: none;
-      padding-top: 32px;
-    }
-
-    .feedback-content {
-      padding-inline: 16px;
-    }
-
-    .feedback h1 {
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 24px;
-    }
-
-    .pdf-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .pdf-link {
-      text-decoration: none;
-      color: #183d6e;
-      background-color: #e3f0ff;
-
-      border: 1px solid transparent;
-      padding: 5px 10px;
-      border-radius: 5px;
-    }
-
-    .pdf-link:hover {
-      background-color: #007bff;
-      color: #fff;
-    }
-
-    .text-area {
-      color: #007bff;
-      padding: 5px 10px;
-      color: #666;
-      line-height: 1.6;
-      border: 1px solid transparent;
-      border-radius: 5px;
-      background-color: #e3f0ff;
-    }
-
-    .main-content {
-      flex: 1;
-    }
-
     .user-profile {
       display: grid;
       margin-block: 30px 20px;
@@ -1038,7 +478,7 @@
 
       @media (min-width: 576px) {
         padding-right: 50px;
-        width: 28%;
+        width: 250px;
         grid-template-areas:
           'image'
           'info'
@@ -1060,19 +500,25 @@
       border-radius: 50%;
       width: 50px;
       height: 50px;
+      margin-left: 8px;
+      object-fit: cover;
+      
     }
 
     .user-profile-name p {
       margin: 0;
       color: #8a8a8a;
       font-size: 12px;
+      margin-left: 8px;
     }
 
     .user-profile-name h5 {
       color: #183d6e;
       font-size: 18px;
       margin: 0;
+      margin-left: 8px;
     }
+
 
     .user-info {
       grid-area: info;
@@ -1083,6 +529,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      cursor: pointer;
+
       @media (max-width: 576px) {
         margin-top: 0;
         text-align: center;
@@ -1095,15 +543,15 @@
       align-items: center;
       gap: 8px;
       grid-area: request;
-      /* margin-top: 8px; */
       padding: 8px 12px;
       border-radius: 10px;
       color: #183d6e;
+      cursor: pointer;
 
       @media (max-width: 576px) {
         margin-top: 0;
         text-align: center;
-        background-color: #183d6e;
+        background-color: #E4ECF8;
         color: white;
       }
     }
@@ -1117,6 +565,7 @@
       border-radius: 10px;
       /* margin-top: 8px; */
       color: red;
+      cursor: pointer;
 
       @media (max-width: 576px) {
         margin-top: 0;
@@ -1131,6 +580,13 @@
       background-color: #E4ECF8;
       color: #183D6E;
     }
+
+    .user-logout:hover{
+        background-color: #E4ECF8;
+        color: #183D6E;
+    }
+
+    
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -1141,12 +597,14 @@
         window.location.href = '/my-infos.html';
       });
 
-      
       $('.user-request').on('click', () => {
         window.location.href = '/active-card-pagination.html';
       });
 
+
     });
+
+
   </script>
 </head>
 
@@ -1158,18 +616,18 @@
     <div class="mobile_container">
       <div class="mobile_container_into">
         <!-- <div class="login_section">
-                        <button>
-                            Şəxsi kabinetə daxil ol
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M9.99992 2.70825C9.65474 2.70825 9.37492 2.98807 9.37492 3.33325C9.37492 3.67843 9.65474 3.95825 9.99992 3.95825C11.7004 3.95825 13.2071 4.53419 14.2841 5.55723C15.3561 6.57556 16.0416 8.07361 16.0416 9.99992C16.0416 11.9262 15.3561 13.4243 14.2841 14.4426C13.2071 15.4656 11.7004 16.0416 9.99992 16.0416C9.65474 16.0416 9.37492 16.3214 9.37492 16.6666C9.37492 17.0118 9.65474 17.2916 9.99992 17.2916C11.9827 17.2916 13.8094 16.6175 15.1449 15.3489C16.4854 14.0756 17.2916 12.2403 17.2916 9.99992C17.2916 7.75956 16.4854 5.92427 15.1449 4.65094C13.8094 3.38232 11.9827 2.70825 9.99992 2.70825Z" fill="white"/>
-                                    <path d="M9.2913 7.47464C9.53538 7.23057 9.93111 7.23057 10.1752 7.47464L12.3085 9.60798C12.5526 9.85205 12.5526 10.2478 12.3085 10.4919L10.1752 12.6252C9.93111 12.8693 9.53538 12.8693 9.2913 12.6252C9.04723 12.3811 9.04723 11.9854 9.2913 11.7413L10.3577 10.6749H3.33325C2.98807 10.6749 2.70825 10.3951 2.70825 10.0499C2.70825 9.70474 2.98807 9.42492 3.33325 9.42492H10.3577L9.2913 8.35853C9.04723 8.11445 9.04723 7.71872 9.2913 7.47464Z" fill="white"/>
-                                    <path d="M9.99992 2.70825C9.65474 2.70825 9.37492 2.98807 9.37492 3.33325C9.37492 3.67843 9.65474 3.95825 9.99992 3.95825C11.7004 3.95825 13.2071 4.53419 14.2841 5.55723C15.3561 6.57556 16.0416 8.07361 16.0416 9.99992C16.0416 11.9262 15.3561 13.4243 14.2841 14.4426C13.2071 15.4656 11.7004 16.0416 9.99992 16.0416C9.65474 16.0416 9.37492 16.3214 9.37492 16.6666C9.37492 17.0118 9.65474 17.2916 9.99992 17.2916C11.9827 17.2916 13.8094 16.6175 15.1449 15.3489C16.4854 14.0756 17.2916 12.2403 17.2916 9.99992C17.2916 7.75956 16.4854 5.92427 15.1449 4.65094C13.8094 3.38232 11.9827 2.70825 9.99992 2.70825Z" stroke="white"/>
-                                    <path d="M9.2913 7.47464C9.53538 7.23057 9.93111 7.23057 10.1752 7.47464L12.3085 9.60798C12.5526 9.85205 12.5526 10.2478 12.3085 10.4919L10.1752 12.6252C9.93111 12.8693 9.53538 12.8693 9.2913 12.6252C9.04723 12.3811 9.04723 11.9854 9.2913 11.7413L10.3577 10.6749H3.33325C2.98807 10.6749 2.70825 10.3951 2.70825 10.0499C2.70825 9.70474 2.98807 9.42492 3.33325 9.42492H10.3577L9.2913 8.35853C9.04723 8.11445 9.04723 7.71872 9.2913 7.47464Z" stroke="white"/>
-                                  </svg>
-                            </div>
-                        </button>
-                    </div> -->
+                          <button>
+                              Şəxsi kabinetə daxil ol
+                              <div>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                      <path d="M9.99992 2.70825C9.65474 2.70825 9.37492 2.98807 9.37492 3.33325C9.37492 3.67843 9.65474 3.95825 9.99992 3.95825C11.7004 3.95825 13.2071 4.53419 14.2841 5.55723C15.3561 6.57556 16.0416 8.07361 16.0416 9.99992C16.0416 11.9262 15.3561 13.4243 14.2841 14.4426C13.2071 15.4656 11.7004 16.0416 9.99992 16.0416C9.65474 16.0416 9.37492 16.3214 9.37492 16.6666C9.37492 17.0118 9.65474 17.2916 9.99992 17.2916C11.9827 17.2916 13.8094 16.6175 15.1449 15.3489C16.4854 14.0756 17.2916 12.2403 17.2916 9.99992C17.2916 7.75956 16.4854 5.92427 15.1449 4.65094C13.8094 3.38232 11.9827 2.70825 9.99992 2.70825Z" fill="white"/>
+                                      <path d="M9.2913 7.47464C9.53538 7.23057 9.93111 7.23057 10.1752 7.47464L12.3085 9.60798C12.5526 9.85205 12.5526 10.2478 12.3085 10.4919L10.1752 12.6252C9.93111 12.8693 9.53538 12.8693 9.2913 12.6252C9.04723 12.3811 9.04723 11.9854 9.2913 11.7413L10.3577 10.6749H3.33325C2.98807 10.6749 2.70825 10.3951 2.70825 10.0499C2.70825 9.70474 2.98807 9.42492 3.33325 9.42492H10.3577L9.2913 8.35853C9.04723 8.11445 9.04723 7.71872 9.2913 7.47464Z" fill="white"/>
+                                      <path d="M9.99992 2.70825C9.65474 2.70825 9.37492 2.98807 9.37492 3.33325C9.37492 3.67843 9.65474 3.95825 9.99992 3.95825C11.7004 3.95825 13.2071 4.53419 14.2841 5.55723C15.3561 6.57556 16.0416 8.07361 16.0416 9.99992C16.0416 11.9262 15.3561 13.4243 14.2841 14.4426C13.2071 15.4656 11.7004 16.0416 9.99992 16.0416C9.65474 16.0416 9.37492 16.3214 9.37492 16.6666C9.37492 17.0118 9.65474 17.2916 9.99992 17.2916C11.9827 17.2916 13.8094 16.6175 15.1449 15.3489C16.4854 14.0756 17.2916 12.2403 17.2916 9.99992C17.2916 7.75956 16.4854 5.92427 15.1449 4.65094C13.8094 3.38232 11.9827 2.70825 9.99992 2.70825Z" stroke="white"/>
+                                      <path d="M9.2913 7.47464C9.53538 7.23057 9.93111 7.23057 10.1752 7.47464L12.3085 9.60798C12.5526 9.85205 12.5526 10.2478 12.3085 10.4919L10.1752 12.6252C9.93111 12.8693 9.53538 12.8693 9.2913 12.6252C9.04723 12.3811 9.04723 11.9854 9.2913 11.7413L10.3577 10.6749H3.33325C2.98807 10.6749 2.70825 10.3951 2.70825 10.0499C2.70825 9.70474 2.98807 9.42492 3.33325 9.42492H10.3577L9.2913 8.35853C9.04723 8.11445 9.04723 7.71872 9.2913 7.47464Z" stroke="white"/>
+                                    </svg>
+                              </div>
+                          </button>
+                      </div> -->
 
         <div class="login_2_section">
           <div class="user_info_header">
@@ -1177,7 +635,7 @@
               <div class="avatar_img"></div>
               <div class="avatar_content">
                 <p>Xoş gəldiniz,</p>
-                <h5>Elçin Şərifli</h5>
+                <h5>Eldar</h5>
               </div>
             </div>
           </div>
@@ -1222,11 +680,11 @@
             </ul>
           </div>
           <div style="
-                    width: 100%;
-                    height: 1px;
-                    background: #e7e7e7;
-                    margin: 20px auto;
-                  "></div>
+                      width: 100%;
+                      height: 1px;
+                      background: #e7e7e7;
+                      margin: 20px auto;
+                    "></div>
         </div>
 
         <div class="menu_section">
@@ -1308,11 +766,11 @@
         </div>
 
         <div style="
-                  width: 100%;
-                  height: 1px;
-                  background: #e7e7e7;
-                  margin: 20px 0 0 0;
-                "></div>
+                    width: 100%;
+                    height: 1px;
+                    background: #e7e7e7;
+                    margin: 20px 0 0 0;
+                  "></div>
 
         <div class="mobile_footer_section">
           <div class="mobile_social_bars">
@@ -1388,11 +846,11 @@
             </div>
           </div>
           <div style="
-                    width: 100%;
-                    height: 1px;
-                    background: #e7e7e7;
-                    margin: 20px 0 0 0;
-                  "></div>
+                      width: 100%;
+                      height: 1px;
+                      background: #e7e7e7;
+                      margin: 20px 0 0 0;
+                    "></div>
           <div class="mobile_footer_end">
             <p>© 2024 Azərbaycan Dəmir Yolları QSC</p>
           </div>
@@ -1560,270 +1018,146 @@
     <div class="container my-4 wrapper">
       <div class="user-profile">
         <div class="user-profile-name">
-          <img src="/images/avatar.png" alt="placeholder" />
-          <div style="margin-left: 10px;">
+          <img src="./images/avatar.png" alt="placeholder" />
+          <div>
             <p>Xoş gəldiniz,</p>
             <h5>Eldar</h5>
           </div>
         </div>
-        <div class="user-info active">
-          <img src="user-icon.png" alt="" width="20px" height="20px" />
-          <span style="font-size: 14px; font-weight: 500;">Məlumatlarım </span>
+        <div class="user-info">
+            <img src="user-icon.png" alt="" width="20px" height="20px" />
+                      <span class="info-text">Məlumatlarım </span>
         </div>
-        <div class="user-request">
-          <img src="doc-icon.png" alt="" width="20px" height="20px" />
-          <span style="font-size: 14px; font-weight: 500;">Müraciətlərim</span>
+        <div class="user-request active">
+            <img src="doc-icon.png" alt="" width="20px" height="20px" />
+
+            <span class="request-text">Müraciətlərim</span>
         </div>
         <div class="user-logout">
-          <img src="exit-icon.png" alt="" width="20px" height="20px" />
-          <span style="font-size: 14px; font-weight: 500;"> Hesabdan çıx </span>
+            <img src="exit-icon.png" alt="" width="20px" height="20px" />
+
+            <span class="logout-text"> Hesabdan çıx </span>
         </div>
       </div>
-      <section class="main_form" style="max-width: 100%;">
-        <div class="container mt-4 pdiv">
-          <div class="profile-div">
-            <!-- Profile Image with Edit Icon -->
-            <div class="profile-image-container">
-              <button class="profile-image-btn" title="Change Profile Image">
-                <img src="images/avatar.png" alt="Profile" class="profile-image" />
+      <div class="main-content">
+        <div class="requests">
+          <h1 class="title">Müraciətlərim</h1>
+          <div class="tabs">
+            <button class="tab active">Aktiv</button>
+            <button class="tab">Bitmiş</button>
+            <button class="tab">İmtina olunmuş</button>
+          </div>
+        </div>
+        <div id="card-container">
+          <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center">
+                <img class="tool-img" width="48px" height="48px" src="vaadin_tools.png" alt="" />
+                <div style="margin-left: 8px">
+                  <h6 class="mb-0" id="request-number">
+                    № 1154431456
+                  </h6>
+                  <p class="text-muted mb-0" id="request-name">
+                    Vaqonların təmiri ilə əlaqədar
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn-with-icon">
+                  <img style="margin-right: 8px" width="18px" src="Eye.png" alt="" /><span class="checkEye">Müraciətə
+                    bax</span>
+                </button>
+                <button class="icon-button">
+                  <img width="40px" src="download-icon.png" alt="" />
+                </button>
+              </div>
+            </div>
+            <hr class="horizontal-line" />
+            <div class="card-body">
+              <div class="details">
+                <div class="step-indicator">
+                  <!-- Step 1 -->
+                  <div class="step">
+                    <span class="date">08.08.08</span>
+                    <img class="done-circle" src="done-circle.png" alt="" />
+                    <div class="step-description">
+                      <small class="completed-step-name">Qəbul edildi</small>
+                      <small class="step-explanation">Müraciətiniz uğurla göndərilib</small>
+                    </div>
+                  </div>
+                  <!-- Progress Bar -->
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-active"></div>
+                  </div>
+                  <!-- Step 2 -->
+                  <div class="step">
+                    <span class="date opacity-0">08.08.08</span>
+                    <img class="grey-circle" src="grey-circle.png" alt="" />
+                    <div class="step-description">
+                      <small class="uncompleted-step-name">Baxılır</small>
+                      <small class="step-explanation">Müraciətinizə baxılır</small>
+                    </div>
+                  </div>
+                  <!-- Progress Bar -->
+                  <div class="progress-bar-container">
+                    <div class="grey-progress-bar-active"></div>
+                  </div>
+                  <!-- Step 3 -->
+                  <div class="step">
+                    <span class="date opacity-0">08.08.08</span>
+                    <img class="grey-circle" src="grey-circle.png" alt="" />
+                    <div class="step-description">
+                      <small class="uncompleted-step-name">İcra edildi</small>
+                      <small class="step-explanation">Müraciətiniz uğurla icar edildi</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="feedback">
+                  <hr class="horizontal-line mb-4" />
+                  <div class="feedback-content">
+                    <h1>Cavab Məktubu</h1>
+                    <div class="pdf-links">
+                      <a href="#" class="pdf-link">Cavab məktubu.pdf</a>
+                      <a href="#" class="pdf-link">Cavab məktubu.pdf</a>
+                      <a href="#" class="pdf-link">Cavab məktubu.pdf</a>
+                      <a href="#" class="pdf-link">Cavab məktubu.pdf</a>
+                      <a href="#" class="pdf-link">Cavab məktubu.pdf</a>
+                    </div>
+                    <p class="text-area">
+                      Bütün məlumatlar rus dilində yazılmalıdır. Bütün
+                      məlumatlar rus dilində yazılmalıdır. Bütün məlumatlar rus
+                      dilində yazılmalıdır. Bütün məlumatlar rus dilində
+                      yazılmalıdır. Bütün məlumatlar rus dilində yazılmalıdır.
+                      Bütün məlumatlar rus dilində yazılmalıdır. Bütün
+                      məlumatlar rus dilində yazılmalıdır. Bütün məlumatlar rus
+                      dilində yazılmalıdır. Bütün məlumatlar rus dilində
+                      yazılmalıdır. Bütün məlumatlar rus dilində yazılmalıdır.
+                      Bütün məlumatlar rus dilində yazılmalıdır. Bütün
+                      məlumatlar rus dilində yazılmalıdır. Bütün məlumatlar rus
+                      dilində yazılmalıdır. Bütün məlumatlar rus dilində
+                      yazılmalıdır. Bütün məlumatlar rus dilində yazılmalıdır.
+                      Bütün məlumatlar rus dilində yazılmalıdır. Bütün
+                      məlumatlar rus dilində yazılmalıdır. Bütün məlumatlar rus
+                      dilində yazılmalıdır. Bütün məlumatlar rus dilində
+                      yazılmalıdır.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button class="details-toggle-btn" onclick="toggleDetails(this)">
+                Ətraflı bax
+                <img src="arrow-down.png" width="16px" height="16px" alt="" />
               </button>
-              <div class="edit-icon">
-                <img width="30px" height="30px" src="edit-icon.png" alt="" />
-                <!-- Camera Icon -->
-              </div>
-            </div>
-            <!-- Change Password Button -->
-            <a href="#" class="change-password-btn">Şifrəni dəyiş</a>
-          </div>
-        </div>
-
-        <div class="main_form_body">
-          <div>
-            <div class="mTab_1">
-              <div class="row">
-                <div class="col-12 col-md-6 col-xl-4 mb16">
-                  <div class="form_input_section">
-                    <div class="input_section">
-                      <label>Qeydiyyatda olduğu ölkə*</label>
-                      <select id="registrationCountry" class="custom-select2">
-                        <option></option>
-                        <option>Azərbaycan</option>
-                        <option>Rusiya</option>
-                        <option>Türkiyə</option>
-                      </select>
-                    </div>
-                    <div class="text-danger mt10"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-4 mb16">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label>Şirkətin adı*</label>
-                      <input type="text" id="companyName" placeholder="Yazın" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-4 mb16">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label>VÖEN*</label>
-                      <input type="text" id="voen" placeholder="Yazın" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-4 mb16">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label>Ad*</label>
-                      <input type="text" id="firstname" placeholder="Yazın" value="Eldar" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 col-xl-4 mb16">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label>Soyad*</label>
-                      <input type="text" id="lastname" placeholder="Yazın" value="Məmmədov" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-4 mb16">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label>Ata adı*</label>
-                      <input type="text" id="patronymic" placeholder="Yazın" value="Elxan" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-3 mb16 d-flex">
-                  <div class="d-flex justify-content-center w-100 gap-2">
-                    <div class="form_input_section nogap">
-                      <div class="input_section">
-                        <label>Cinsiyyət</label>
-                        <div class="d-flex w-100">
-                          <div class="custom-radio-group gap-2 w-100">
-                            <input type="radio" id="yes" name="choice" value="male" class="custom-radio" />
-                            <label for="yes" class="custom-radio-label">Kişi</label>
-
-                            <input type="radio" id="no" name="choice" value="female" class="custom-radio" />
-                            <label for="no" class="custom-radio-label">Qadın</label>
-                          </div>
-                        </div>
-                        <div class="text-danger mt10"></div>
-                      </div>
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-3 mb16">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label>Doğum tarixi*</label>
-                      <input type="text" id="birthdate" placeholder="gün.ay.il" value="11.07.1990" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-3 mb16">
-                  <div class="form_input_section">
-                    <div class="input_section">
-                      <label>Vətəndaşlıq*</label>
-                      <select id="citizenship" class="custom-select2"></select>
-                    </div>
-                    <div class="text-danger mt10"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-3 mb16">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label>Faktiki yaşadığı ünvan*</label>
-                      <input type="text" id="actualResidentialAddress" value="Sumqayıt" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-3 mb16">
-                  <div class="form_input_section">
-                    <div class="input_section">
-                      <label>Sənədin növü*</label>
-                      <select id="passport_type" class="custom-select2">
-                        <option></option>
-                        <option>Şəxsiyyət vəsiqəsi</option>
-                        <option>Xarici pasport</option>
-                        <option>Müvəqqəti yaşayış icazəsi</option>
-                      </select>
-                    </div>
-                    <div class="text-danger mt10"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-3 mb16">
-                  <div class="form_input_section">
-                    <div class="input_section">
-                      <label>Şəxsiyyət vəsiqəsinin seriyası*</label>
-                      <select id="serial_number" class="custom-select2">
-                        <option></option>
-                        <option>AA</option>
-                        <option>AZE</option>
-                      </select>
-                    </div>
-                    <div class="text-danger mt10"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-3 mb16">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label>Şəxsiyyət vəsiqəsinin nömrəsi*</label>
-                      <input type="text" id="identityCardNumber" value="14617226" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3 mb16 d-none">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label>Pasport nömrəsi*</label>
-                      <input type="text" id="passportNumber" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3 mb16">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label>Fin kod*</label>
-                      <input type="text" id="fincode" maxlength="7" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-4 mb16">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label>Şirkətin ünvanı*</label>
-                      <input type="text" id="companyAddress" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-xl-6 mb16">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label>Elektron poçt*</label>
-                      <input enabled type="text" id="mail" value="example@gmail.com" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3 mb16">
-                  <div class="form_input_section">
-                    <div class="input_section">
-                      <label>Əlaqə nömrəsi*</label>
-                      <select id="country_flag_dialCode" class="custom-select2"></select>
-                    </div>
-                    <div class="text-danger mt10"></div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 col-xl-3 mb16">
-                  <div class="form_input_section nogap">
-                    <div class="input_section">
-                      <label style="visibility: hidden">1</label>
-                      <input type="text" id="phoneNumber" />
-                    </div>
-                    <div class="text-danger mt5"></div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-
-          <div class="submit_section" style="margin-top: 30px; justify-content: end;">
-            <button type="submit" id="submit" style="border: none; outline: none">
-              Yadda saxla
-            </button>
-          </div>
         </div>
-      </section>
-
-
+        <nav>
+            <ul class="pagination" id="pagination"></ul>
+          </nav>
+      </div>
     </div>
+
     <footer>
       <div class="footer_box">
         <div class="footer_header">
@@ -1932,54 +1266,76 @@
     </footer>
     <!-- --------- FOOTER (end) --------- -->
   </div>
+
   <script>
-    const totalCards = 15;
-    const cardsPerPage = 5;
-    const totalPages = Math.ceil(totalCards / cardsPerPage);
+const totalPages = 11;       // Total number of pages
+const maxVisible = 3;       // Maximum number of visible buttons (configurable)
+let currentPage = 1;        // Current active page
 
-    const cardContainer = document.getElementById('card-container');
-    const paginationContainer = document.getElementById('pagination');
+function createPagination() {
+  const pagination = document.getElementById("pagination");
+  pagination.innerHTML = "";
 
-    function toggleDetails(button) {
-      const details = button.parentNode.querySelector('.details');
-      if (details.classList.contains('show')) {
-        details.classList.remove('show');
-        button.innerHTML =
-          'Ətraflı bax <img src="arrow-down.png" width="16px" height="16px" alt="">';
-      } else {
-        details.classList.add('show');
-        button.innerHTML =
-          'Ətraflı bax <img src="arrow-up.png" width="16px" height="16px" alt="">';
-      }
-    }
+  const createPageItem = (page) => {
+    const li = document.createElement("li");
+    li.className = `page-item ${page === currentPage ? "active" : ""}`;
+    const a = document.createElement("a");
+    a.className = "page-link";
+    a.href = "#";
+    a.textContent = page;
+    a.addEventListener("click", () => {
+      currentPage = page;
+      createPagination();
+    });
+    li.appendChild(a);
+    return li;
+  };
 
-    function renderPage(page) {
-      // Clear existing cards
-      let cardHTML = cardContainer.innerHTML;
-      cardContainer.innerHTML = '';
-      // Calculate start and end index for cards
-      const start = (page - 1) * cardsPerPage;
-      const end = Math.min(start + cardsPerPage, totalCards);
+  if (totalPages < 1) return;
 
-      // Add cards for the current page
-      for (let i = start; i < end; i++) {
-        cardContainer.innerHTML += cardHTML;
-      }
+  // Always show the first page
+  pagination.appendChild(createPageItem(1));
 
-      // Update pagination buttons
-      Array.from(paginationContainer.children).forEach((button, index) => {
-        button.classList.toggle('active', index + 1 === page);
-      });
-    }
+  // Determine the start and end pages dynamically
+  let startPage = Math.max(2, currentPage - Math.floor(maxVisible / 2));
+  let endPage = Math.min(totalPages - 1, startPage + maxVisible - 1);
 
-    function setupPagination() {
-      for (let i = 1; i <= totalPages; i++) {
-        const button = document.createElement('button');
-        button.textContent = i;
-        button.addEventListener('click', () => renderPage(i));
-        paginationContainer.appendChild(button);
-      }
-    }
+  // Adjust startPage if near the end
+  if (endPage >= totalPages - 1) {
+    startPage = Math.max(2, totalPages - maxVisible);
+  }
+
+  // Show left dots only if there are hidden pages between the first and startPage
+  if (startPage > 2) {
+    const leftDots = document.createElement("li");
+    leftDots.className = "page-item dots";
+    leftDots.textContent = "...";
+    pagination.appendChild(leftDots);
+  }
+
+  // Render visible pages
+  for (let i = startPage; i <= endPage; i++) {
+    pagination.appendChild(createPageItem(i));
+  }
+
+  // Show right dots only if there are hidden pages between endPage and the last page
+  if (endPage < totalPages - 1) {
+    const rightDots = document.createElement("li");
+    rightDots.className = "page-item dots";
+    rightDots.textContent = "...";
+    pagination.appendChild(rightDots);
+  }
+
+  // Always show the last page if more than one page
+  if (totalPages > 1) {
+    pagination.appendChild(createPageItem(totalPages));
+  }
+}
+
+// Initial render
+createPagination();
+
+
 
     function setActiveForRequestTabs() {
       let requests = document.querySelector('.requests');
@@ -2016,22 +1372,7 @@
     }
 
     // Initialize
-    setupPagination();
-    renderPage(1);
     setActiveForRequestTabs();
-
-
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-  <script src="./js/citizen_approval.js"></script>
-
-  <script>
-    document.getElementById('citizenship').selectedIndex = 0;
   </script>
 </body>
 
