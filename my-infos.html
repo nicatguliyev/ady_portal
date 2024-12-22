@@ -23,6 +23,7 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
+      background-color: white ;
     }
 
     .card {
@@ -1137,6 +1138,36 @@
       background-color: #E4ECF8;
       color: #183D6E;
     }
+
+    .welcome-div{
+      margin-left: 10px;
+    }
+
+    .info-text-span{
+      font-size: 14px; 
+      font-weight: 500;
+    }
+    .request-text-span{
+      font-size: 14px; 
+      font-weight: 500;
+    }
+
+    .logout-text-span{
+      font-size: 14px; 
+      font-weight: 500;
+    }
+
+    .main_form{
+      max-width: 100%;
+    }
+    .submit_section{
+      margin-top: 30px;
+       justify-content: end;
+    }
+    .submit-section-button{
+      border: none;
+       outline: none
+    }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -1567,25 +1598,25 @@
       <div class="user-profile">
         <div class="user-profile-name">
           <img src="/images/avatar.png" alt="placeholder" />
-          <div style="margin-left: 10px;">
+          <div class="welcome-div">
             <p>Xoş gəldiniz,</p>
             <h5>Eldar</h5>
           </div>
         </div>
         <div class="user-info active">
           <img src="user-icon.png" alt="" width="20px" height="20px" />
-          <span style="font-size: 14px; font-weight: 500;">Məlumatlarım </span>
+          <span class="info-text-span" >Məlumatlarım </span>
         </div>
         <div class="user-request">
           <img src="doc-icon.png" alt="" width="20px" height="20px" />
-          <span style="font-size: 14px; font-weight: 500;">Müraciətlərim</span>
+          <span class="request-text-span">Müraciətlərim</span>
         </div>
         <div class="user-logout">
           <img src="exit-icon.png" alt="" width="20px" height="20px" />
-          <span style="font-size: 14px; font-weight: 500;"> Hesabdan çıx </span>
+          <span class="logout-text-span"> Hesabdan çıx </span>
         </div>
       </div>
-      <section class="main_form" style="max-width: 100%;">
+      <section class="main_form">
         <div class="container mt-4 pdiv">
           <div class="profile-div">
             <!-- Profile Image with Edit Icon -->
@@ -1820,8 +1851,8 @@
             </div>
           </div>
 
-          <div class="submit_section" style="margin-top: 30px; justify-content: end;">
-            <button type="submit" id="submit" style="border: none; outline: none">
+          <div class="submit_section">
+            <button class="submit-section-button" type="submit" id="submit" >
               Yadda saxla
             </button>
           </div>

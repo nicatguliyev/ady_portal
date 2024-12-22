@@ -1372,10 +1372,47 @@ createPagination();
 
         if (this.innerHTML === 'Bitmiş') {
           let feedbacks = document.querySelectorAll('.feedback');
+          let pdfLinks = document.querySelectorAll('.pdf-links');
+          let textAreas =  document.querySelectorAll('.text-area');
+
           feedbacks.forEach((feedback) => {
             feedback.style.display = 'block';
           });
-        } else {
+          
+          pdfLinks.forEach((pdfLink) => {
+                pdfLink.style.display = 'block';
+            });
+
+            textAreas.forEach((textArea) => {
+                textArea.style.color = '#666';
+            });
+
+        } 
+        else if(this.innerHTML === 'İmtina olunmuş'){
+            //console.log("ahjsgdjasgdfj")
+             let feedbacks = document.querySelectorAll('.feedback');
+             let pdfLinks = document.querySelectorAll('.pdf-links');
+             let textAreas =  document.querySelectorAll('.text-area');
+             feedbacks.forEach((feedback) => {
+             feedback.style.display = 'block';
+            });
+
+            pdfLinks.forEach((pdfLink) => {
+                pdfLink.style.display = 'none';
+            });
+
+            textAreas.forEach((textArea) => {
+                textArea.style.color = 'red';
+            });
+
+          //  console.log(pdfLinks);
+        //     pdfLinks.forEach((pdflink) => {
+        //     pdfLink.style.display = 'none';
+        //     });
+        // }
+        }
+        
+        else {
           let feedbacks = document.querySelectorAll('.feedback');
           feedbacks.forEach((feedback) => {
             feedback.style.display = 'none';

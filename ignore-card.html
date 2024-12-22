@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./src/icons/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./src/icons/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./src/icons/favicon/favicon-16x16.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <title>Pagination with Expandable Cards</title>
+    <link rel="stylesheet" href="./css/general.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <link rel="stylesheet" href="./css/select2.css" />
+    <link rel="stylesheet" href="./css/online_services.css" />
+    <link rel="stylesheet" href="./css/citizen_approval.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+          font-family: 'Inter', sans-serif;
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          align-items: start;
+          padding: 8px;
+        }
+    
+        .card {
+          border-radius: 20px;
+          border-color: rgb(231, 231, 231);
+        }
+    
+        .pagination {
+          display: flex;
+          justify-content: center;
+          margin-top: 20px;
+        }
+    
+        .pagination button {
+          margin: 0 5px;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 5px;
+          background-color: #183d6e;
+          color: white;
+          cursor: pointer;
+        }
+    
+        .pagination button.active {
+          background-color: #0056b3;
+        }
+    
+        .pagination button:hover {
+          background-color: #004494;
+        }
+
+        .tab:hover {
+            background-color: #c4dffc  !important;
+        }
+    
+        .details-toggle-btn {
+          display: block;
+          margin: 20px auto;
+          font-size: 14px;
+          font-weight: 500;
+          color: #183d6e;
+          background: none;
+          border: none;
+          cursor: pointer;
+          text-decoration: none;
+        }
+    
+        .details-toggle-btn:focus {
+          outline: none;
+        }
+    
+        .logout-text{
+            font-weight: 500;
+            font-size: 14px;
+    
+        }
+        .request-text{
+            font-weight: 500;
+            font-size: 14px; 
+        }
+    
+        .info-text{
+            font-weight: 500;
+            font-size: 14px; 
+        }
+    
+        .horizontal-line {
+          border: 0;
+          height: 2px;
+          background-color: #a4c9ff;
+          margin: 0;
+          margin-left: 16px !important;
+          margin-right: 16px !important;
+        }
+    
+        .progress-bar-container {
+          width: 4px;
+          height: 50px;
+          margin-left: 3.5rem;
+    
+          @media (min-width: 576px) {
+            width: 100%;
+            height: 4px;
+            background-color: #dcdcdc;
+            position: relative;
+            margin: -42px 15px 0;
+          }
+        }
+    
+        .progress-bar-active {
+          background-color: #183d6e;
+        }
+    
+        .grey-progress-bar-active {
+          background-color: #dcdcdc;
+          height: inherit;
+          width: 100%;
+        }
+    
+        .date {
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 20px;
+          color: #183d6e;
+        }
+    
+        body {
+          font-family: 'Inter', sans-serif;
+        }
+    
+        .card {
+          border-radius: 20px;
+          border-color: rgb(231, 231, 231);
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        .card-header {
+          background-color: #ffffff;
+          border-bottom: none;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+    
+        .horizontal-line {
+          border: 0;
+          height: 2px;
+          background-color: #a4c9ff;
+          margin: 0;
+          margin-left: 16px !important;
+          margin-right: 16px !important;
+        }
+    
+        .step-indicator {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-left: 16px;
+          padding-right: 16px;
+          flex-direction: column;
+          gap: 15px;
+    
+          @media (min-width: 576px) {
+            flex-direction: row;
+          }
+        }
+    
+        .step {
+          display: flex;
+          align-items: center;
+          flex-direction: row-reverse;
+          width: 100%;
+          justify-content: center;
+    
+          @media (min-width: 576px) {
+            padding-top: 0px;
+            flex-direction: column;
+            text-align: center;
+          }
+        }
+    
+        .step-description {
+          display: flex;
+          flex-direction: column;
+        }
+    
+        .done-circle {
+          width: 30px;
+          height: 30px;
+    
+          margin-left: 1.1rem;
+          margin-right: 1.8rem;
+    
+          @media (min-width: 576px) {
+            margin: 10px 0;
+          }
+        }
+    
+        .grey-circle {
+          width: 25px;
+          height: 25px;
+          margin-left: 1.1rem;
+          margin-right: 1.8rem;
+    
+          @media (min-width: 576px) {
+            margin: 10px 0;
+          }
+        }
+    
+        .progress-bar-active {
+          height: inherit;
+          background-color: #183d6e;
+          width: 100%;
+        }
+    
+        .date {
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 20px;
+          color: #183d6e;
+        }
+    
+        .details-toggle-btn {
+          display: block;
+          margin: 20px auto;
+          font-size: 14px;
+          font-weight: 500;
+          color: #183d6e;
+          background: none;
+          border: none;
+          cursor: pointer;
+          text-decoration: none;
+        }
+    
+        .details-toggle-btn:focus {
+          outline: none;
+        }
+    
+        .card-body {
+          padding: 0px;
+        }
+    
+        small {
+          max-width: 120px;
+        }
+    
+        .btn-with-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 6px 12px;
+          background-color: #e4ecf8;
+          color: #183d6e;
+          border: none;
+          border-radius: 6px;
+          font-size: 14px;
+          font-weight: 500;
+          text-decoration: none;
+        }
+    
+        .icon-button {
+          width: 40px;
+          height: 40px;
+          background-color: #e4f8eb;
+          color: #007b55;
+          border: none;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+    
+        .icon-button i {
+          font-size: 18px;
+        }
+    
+        #request-number {
+          overflow: hidden;
+          color: #131313;
+          text-overflow: ellipsis;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 24px;
+        }
+    
+        #request-name {
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 20px;
+          color: #424242;
+        }
+    
+        .completed-step-name {
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 24px;
+          color: #183d6e;
+          text-align: center;
+        }
+    
+        .uncompleted-step-name {
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 24px;
+          color: #585858;
+          text-align: center;
+        }
+    
+        .step-explanation {
+          color: #8a8a8a;
+          text-align: center;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 20px;
+        }
+    
+        .details {
+          overflow: hidden;
+          transition: all 0.5s ease-in-out;
+          height: 0;
+          opacity: 0;
+        }
+    
+        .details.show {
+          opacity: 1;
+          height: auto;
+          padding-top: 20px !important;
+        }
+    
+        .checkEye {
+          display: none;
+    
+          @media (min-width: 968px) {
+            display: block;
+          }
+        }
+    
+        .requests {
+width: 100%;
+        }
+    
+        .requests .title {
+          font-size: 20px;
+          font-weight: bold;
+          color: #004a9f;
+          margin-bottom: 0;
+          display: inline-block;
+          border-bottom: 3px solid #004a9f;
+        }
+    
+        .requests .tabs {
+            margin-bottom: 10px;
+          padding-top: 20px;
+          border-top: 1px solid #ddd;
+          display: flex;
+          gap: 10px;
+        }
+    
+        .requests .tab {
+          padding: 8px 16px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          background-color: #fff;
+          color: #555;
+          cursor: pointer;
+          font-size: 14px;
+          transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    
+        .requests .tab.active {
+          background-color: #004a9f;
+          color: #fff;
+          border-color: #004a9f;
+        }
+    
+        .wrapper {
+          display: flex;
+          width: 1160px;
+          max-width: 100%;
+          padding-left: 8px;
+          padding-right: 8px;
+          @media (max-width: 576px) {
+            flex-direction: column;
+          }
+        }
+    
+        .feedback {
+          display: block;
+          padding-top: 32px;
+        }
+    
+        .feedback-content {
+          padding-inline: 16px;
+        }
+    
+        .feedback h1 {
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 24px;
+        }
+    
+        .pdf-links {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-bottom: 20px;
+        }
+    
+        .pdf-link {
+          text-decoration: none;
+          color: #183d6e;
+          background-color: #e3f0ff;
+    
+          border: 1px solid transparent;
+          padding: 5px 10px;
+          border-radius: 5px;
+        }
+    
+        .pdf-link:hover {
+          background-color: #007bff;
+          color: #fff;
+        }
+    
+        .text-area {
+          color: #007bff;
+          padding: 5px 10px;
+          color: red;
+          line-height: 1.6;
+          border: 1px solid transparent;
+          border-radius: 5px;
+          background-color: #e3f0ff;
+        }
+    
+        .main-content {
+          flex: 1;
+        }
+    
+        .user-profile {
+          display: grid;
+          margin-block: 30px 20px;
+          width: 100%;
+          grid-auto-rows: max-content;
+          align-items: center;
+          column-gap: 10px;
+          row-gap: 20px;
+          grid-template-areas:
+            'image logout'
+            'info request';
+    
+          @media (min-width: 576px) {
+            padding-right: 50px;
+            width: 250px;
+            grid-template-areas:
+              'image'
+              'info'
+              'request'
+              'logout';
+          }
+        }
+    
+        .user-profile {
+          display: grid;
+          margin-block: 30px 20px;
+          width: 100%;
+          grid-auto-rows: max-content;
+          align-items: center;
+          column-gap: 10px;
+          row-gap: 20px;
+          grid-template-areas:
+            'image logout'
+            'info request';
+    
+          @media (min-width: 576px) {
+            padding-right: 50px;
+            width: 250px;
+            grid-template-areas:
+              'image'
+              'info'
+              'request'
+              'logout';
+          }
+        }
+    
+        .user-profile-name {
+          display: flex;
+          gap: 4px;
+          width: max-content;
+          align-items: center;
+          grid-area: image;
+        }
+    
+        .user-profile-name img {
+          display: block;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          margin-left: 8px;
+          object-fit: cover;
+          
+        }
+    
+        .user-profile-name p {
+          margin: 0;
+          color: #8a8a8a;
+          font-size: 12px;
+          margin-left: 8px;
+        }
+    
+        .user-profile-name h5 {
+          color: #183d6e;
+          font-size: 18px;
+          margin: 0;
+          margin-left: 8px;
+        }
+    
+    
+        .user-info {
+          grid-area: info;
+          margin-top: 24px;
+          color: #183d6e;
+          padding: 8px 12px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          cursor: pointer;
+    
+          @media (max-width: 576px) {
+            margin-top: 0;
+            text-align: center;
+            border: 1px solid #e3f0ff;
+            justify-content: center;
+          }
+        }
+    
+        .user-request {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          grid-area: request;
+          padding: 8px 12px;
+          border-radius: 10px;
+          color: #183d6e;
+          cursor: pointer;
+    
+          @media (max-width: 576px) {
+            margin-top: 0;
+            text-align: center;
+            background-color: #E4ECF8;
+            color: white;
+            justify-content: center;
+          }
+        }
+    
+        .user-logout {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          grid-area: logout;
+          padding: 8px 12px;
+          border-radius: 10px;
+          /* margin-top: 8px; */
+          color: red;
+          cursor: pointer;
+    
+          @media (max-width: 576px) {
+            margin-top: 0;
+            font-size: 14px;
+            justify-content: center;
+          }
+        }
+    
+        .user-info:hover,
+        .user-request:hover,
+        .user-info.active,
+        .user-request.active {
+          background-color: #E4ECF8;
+          color: #183D6E;
+        }
+    
+        .user-logout:hover{
+            background-color: #E4ECF8;
+            color: #183D6E;
+        }
+    
+     #card-container{
+        width: 100%;
+     }
+    
+        
+      </style>
+</head>
+<body>
+    <div class="requests">
+        <h1 class="title">Müraciətlərim</h1>
+        <div class="tabs">
+          <button id="activeBtn" class="tab ">Aktiv</button>
+          <button id="compBtn" class="tab">Bitmiş</button>
+          <button id="ignoreBtn" class="tab active">İmtina olunmuş</button>
+        </div>
+      </div>
+    <div id="card-container">
+        <div class="card mb-3">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+              <img class="tool-img" width="48px" height="48px" src="vaadin_tools.png" alt="" />
+              <div style="margin-left: 8px">
+                <h6 class="mb-0" id="request-number">
+                  № 1154431456
+                </h6>
+                <p class="text-muted mb-0" id="request-name">
+                  Vaqonların təmiri ilə əlaqədar
+                </p>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn-with-icon">
+                <img style="margin-right: 8px" width="18px" src="Eye.png" alt="" /><span class="checkEye">Müraciətə
+                  bax</span>
+              </button>
+              <button class="icon-button">
+                <img width="40px" src="download-icon.png" alt="" />
+              </button>
+            </div>
+          </div>
+          <hr class="horizontal-line" />
+          <div class="card-body">
+            <div class="details">
+              <div class="step-indicator">
+                <!-- Step 1 -->
+                <div class="step">
+                  <span class="date">08.08.08</span>
+                  <img class="done-circle" src="done-circle.png" alt="" />
+                  <div class="step-description">
+                    <small class="completed-step-name">Qəbul edildi</small>
+                    <small class="step-explanation">Müraciətiniz uğurla göndərilib</small>
+                  </div>
+                </div>
+                <!-- Progress Bar -->
+                <div class="progress-bar-container">
+                  <div class="progress-bar-active"></div>
+                </div>
+                <!-- Step 2 -->
+                <div class="step">
+                  <span class="date">08.08.08</span>
+                  <img class="done-circle" src="done-circle.png" alt="" />
+                  <div class="step-description">
+                    <small class="uncompleted-step-name">Baxılır</small>
+                    <small class="step-explanation">Müraciətinizə baxılır</small>
+                  </div>
+                </div>
+                <!-- Progress Bar -->
+                <div class="progress-bar-container">
+                  <div class="grey-progress-bar-active"></div>
+                </div>
+                <!-- Step 3 -->
+                <div class="step">
+                  <span class="date " style="color: red;">08.08.08</span>
+                  <img class="done-circle" src="exit-icon.png" alt="" />
+                  <div class="step-description">
+                    <small class="uncompleted-step-name" style="color: red;">İmtina edildi</small>
+                    <small class="step-explanation">Müraciətiniz uğurla icar edildi</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="feedback">
+                <hr class="horizontal-line mb-4" />
+                <div class="feedback-content">
+              
+                  <p class="text-area">
+                    Bütün məlumatlar rus dilində yazılmalıdır. Bütün
+                    məlumatlar rus dilində yazılmalıdır. Bütün məlumatlar rus
+                    dilində yazılmalıdır. Bütün məlumatlar rus dilində
+                    yazılmalıdır. Bütün məlumatlar rus dilində yazılmalıdır.
+                    Bütün məlumatlar rus dilində yazılmalıdır. Bütün
+                    məlumatlar rus dilində yazılmalıdır. Bütün məlumatlar rus
+                    dilində yazılmalıdır. Bütün məlumatlar rus dilində
+                    yazılmalıdır. Bütün məlumatlar rus dilində yazılmalıdır.
+                    Bütün məlumatlar rus dilində yazılmalıdır. Bütün
+                    məlumatlar rus dilində yazılmalıdır. Bütün məlumatlar rus
+                    dilində yazılmalıdır. Bütün məlumatlar rus dilində
+                    yazılmalıdır. Bütün məlumatlar rus dilində yazılmalıdır.
+                    Bütün məlumatlar rus dilində yazılmalıdır. Bütün
+                    məlumatlar rus dilində yazılmalıdır. Bütün məlumatlar rus
+                    dilində yazılmalıdır. Bütün məlumatlar rus dilində
+                    yazılmalıdır.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <button class="details-toggle-btn" onclick="toggleDetails(this)">
+              Ətraflı bax
+              <img src="arrow-down.png" width="16px" height="16px" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const totalPages = 11;       // Total number of pages
+        const maxVisible = 3;       // Maximum number of visible buttons (configurable)
+        let currentPage = 1;        // Current active page
+        
+        function createPagination() {
+          const pagination = document.getElementById("pagination");
+          pagination.innerHTML = "";
+        
+          const createPageItem = (page) => {
+            const li = document.createElement("li");
+            li.className = `page-item ${page === currentPage ? "active" : ""}`;
+            const a = document.createElement("a");
+            a.className = "page-link";
+            a.href = "#";
+            a.textContent = page;
+            a.addEventListener("click", () => {
+              currentPage = page;
+              createPagination();
+            });
+            li.appendChild(a);
+            return li;
+          };
+        
+          if (totalPages < 1) return;
+        
+          // Always show the first page
+          pagination.appendChild(createPageItem(1));
+        
+          // Determine the start and end pages dynamically
+          let startPage = Math.max(2, currentPage - Math.floor(maxVisible / 2));
+          let endPage = Math.min(totalPages - 1, startPage + maxVisible - 1);
+        
+          // Adjust startPage if near the end
+          if (endPage >= totalPages - 1) {
+            startPage = Math.max(2, totalPages - maxVisible);
+          }
+        
+          // Show left dots only if there are hidden pages between the first and startPage
+          if (startPage > 2) {
+            const leftDots = document.createElement("li");
+            leftDots.className = "page-item dots";
+            leftDots.textContent = "...";
+            pagination.appendChild(leftDots);
+          }
+        
+          // Render visible pages
+          for (let i = startPage; i <= endPage; i++) {
+            pagination.appendChild(createPageItem(i));
+          }
+        
+          // Show right dots only if there are hidden pages between endPage and the last page
+          if (endPage < totalPages - 1) {
+            const rightDots = document.createElement("li");
+            rightDots.className = "page-item dots";
+            rightDots.textContent = "...";
+            pagination.appendChild(rightDots);
+          }
+        
+          // Always show the last page if more than one page
+          if (totalPages > 1) {
+            pagination.appendChild(createPageItem(totalPages));
+          }
+        }
+        
+        function toggleDetails(button) {
+              const details = button.parentNode.querySelector('.details');
+              if (details.classList.contains('show')) {
+                details.classList.remove('show');
+                button.innerHTML =
+                  'Ətraflı bax <img src="arrow-down.png" width="16px" height="16px" alt="">';
+              } else {
+                details.classList.add('show');
+                button.innerHTML =
+                  'Ətraflı bax <img src="arrow-up.png" width="16px" height="16px" alt="">';
+              }
+            }
+        
+        
+        // Initial render
+        createPagination();
+        
+        
+        
+            function setActiveForRequestTabs() {
+              let requests = document.querySelector('.requests');
+        
+              let tabs = requests.querySelectorAll('.tab');
+        
+              function handleActiveTab() {
+                let details = document.querySelectorAll('.details');
+                details.forEach((detail) => detail.classList.remove('show'));
+        
+                tabs.forEach((tab) => {
+                  if (tab.classList.contains('active')) {
+                    tab.classList.remove('active');
+                  }
+                });
+                this.classList.add('active');
+        
+                if (this.innerHTML === 'Bitmiş') {
+                  let feedbacks = document.querySelectorAll('.feedback');
+                  let pdfLinks = document.querySelectorAll('.pdf-links');
+                  let textAreas =  document.querySelectorAll('.text-area');
+        
+                  feedbacks.forEach((feedback) => {
+                    feedback.style.display = 'block';
+                  });
+                  
+                  pdfLinks.forEach((pdfLink) => {
+                        pdfLink.style.display = 'block';
+                    });
+        
+                    textAreas.forEach((textArea) => {
+                        textArea.style.color = '#666';
+                    });
+        
+                } 
+                else if(this.innerHTML === 'İmtina olunmuş'){
+                    //console.log("ahjsgdjasgdfj")
+                     let feedbacks = document.querySelectorAll('.feedback');
+                     let pdfLinks = document.querySelectorAll('.pdf-links');
+                     let textAreas =  document.querySelectorAll('.text-area');
+                     feedbacks.forEach((feedback) => {
+                     feedback.style.display = 'block';
+                    });
+        
+                    pdfLinks.forEach((pdfLink) => {
+                        pdfLink.style.display = 'none';
+                    });
+        
+                    textAreas.forEach((textArea) => {
+                        textArea.style.color = 'red';
+                    });
+        
+                  //  console.log(pdfLinks);
+                //     pdfLinks.forEach((pdflink) => {
+                //     pdfLink.style.display = 'none';
+                //     });
+                // }
+                }
+                
+                else {
+                  let feedbacks = document.querySelectorAll('.feedback');
+                  feedbacks.forEach((feedback) => {
+                    feedback.style.display = 'none';
+                  });
+                }
+              }
+        
+              tabs.forEach((tab) => {
+                tab?.addEventListener('click', handleActiveTab);
+              });
+            }
+        
+            // Initialize
+            setActiveForRequestTabs();
+
+            document.getElementById('activeBtn').addEventListener('click', function () {
+                console.log("sduskdkasd");
+      // Redirect to another HTML file
+      window.location.href = 'active-card.html'; // Replace 'another.html' with the desired file
+    });   document.getElementById('compBtn').addEventListener('click', function () {
+      // Redirect to another HTML file
+      window.location.href = 'complete-card.html'; // Replace 'another.html' with the desired file
+    });   document.getElementById('ignoreBtn').addEventListener('click', function () {
+      // Redirect to another HTML file
+      window.location.href = 'ignore-card.html'; // Replace 'another.html' with the desired file
+    });
+
+
+
+          </script>
+
+</body>
+</html>
